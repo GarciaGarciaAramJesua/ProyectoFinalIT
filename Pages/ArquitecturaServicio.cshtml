@@ -1,0 +1,330 @@
+@page
+@{
+    ViewData["Title"] = "Arquitectura Criptográfica - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Arquitectura del Servicio — SecureVideoStreaming</h2>
+    <p>
+        Arquitectura cliente-servidor del servicio de Transferencia de Archivos Cifrados (TAC-355415).
+        Comprende dos tipos de usuarios, una API REST con Razor Pages, una capa de servicios de negocio
+        y una capa criptográfica especializada.
+    </p>
+    <figure class="diagram-block" id="diagrama-arquitectura">
+        <img src="/images/DiagramaArquitecturaServicio.png"
+             alt="Diagrama de Arquitectura del Servicio TAC"
+             class="diagram-img"
+             onerror="this.closest('figure').classList.add('no-img')" />
+        <figcaption>
+            Diagrama de Arquitectura del Servicio — SecureTransfer (TAC-355415)
+            <br /><span class="diagram-path">wwwroot/images/DiagramaArquitecturaServicio.png</span>
+        </figcaption>
+    </figure>
+</section>
+
+<section class="panel">
+    <h2>Tipos de Usuarios</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Administrador / Dueño</th>
+                    <th>Usuario Consumidor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Subir videos</li>
+                            <li>Cifrar contenido</li>
+                            <li>Gestionar permisos</li>
+                            <li>Verificar integridad</li>
+                            <li>Monitorear accesos (pendientes/otorgar)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Visualizar videos</li>
+                            <li>Solicitar acceso</li>
+                            <li>Descargar autorizado</li>
+                            <li>Reproducir contenido</li>
+                            <li>Ver mis permisos</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>API REST Controllers</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Controlador</th>
+                    <th>Endpoints</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AuthController</strong></td>
+                    <td>POST /register &nbsp;|&nbsp; POST /login &nbsp;|&nbsp; GET /me</td>
+                </tr>
+                <tr>
+                    <td><strong>UsersController</strong></td>
+                    <td>GET /users &nbsp;|&nbsp; GET /users/{id} &nbsp;|&nbsp; PUT /users/{id} &nbsp;|&nbsp; DELETE /{id}</td>
+                </tr>
+                <tr>
+                    <td><strong>VideosController</strong></td>
+                    <td>POST /upload &nbsp;|&nbsp; GET /my-videos &nbsp;|&nbsp; GET /{id} &nbsp;|&nbsp; POST /{id}/verify &nbsp;|&nbsp; DELETE /{id}</td>
+                </tr>
+                <tr>
+                    <td><strong>PermissionsController</strong></td>
+                    <td>POST /grant &nbsp;|&nbsp; DELETE /{id} &nbsp;|&nbsp; GET /check &nbsp;|&nbsp; GET /{video}/{videoId} &nbsp;|&nbsp; GET /my-permissions &nbsp;|&nbsp; PUT /{id}/extend</td>
+                </tr>
+                <tr>
+                    <td><strong>KeyDistrController</strong></td>
+                    <td>POST /get-key &nbsp;|&nbsp; GET /request-access</td>
+                </tr>
+                <tr>
+                    <td><strong>StreamingController</strong></td>
+                    <td>GET /video/{videoId}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Razor Pages + Client-Side</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Página</th>
+                    <th>Función</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Home.cshtml</strong></td>
+                    <td>Dashboard principal / Estadísticas por rol / Videos según permisos</td>
+                </tr>
+                <tr>
+                    <td><strong>Login/Register.cshtml</strong></td>
+                    <td>Autenticación en sesión / Generación claves RSA</td>
+                </tr>
+                <tr>
+                    <td><strong>UploadVideo.cshtml</strong></td>
+                    <td>Subida de archivos / Preview pre-cifrado / Process tracking</td>
+                </tr>
+                <tr>
+                    <td><strong>MyVideos.cshtml</strong></td>
+                    <td>Lista videos admin / Modal reproductor / Lista usuarios acceso</td>
+                </tr>
+                <tr>
+                    <td><strong>VideoGrid.cshtml</strong></td>
+                    <td>Catálogo de videos / Filtros y búsqueda / Vista grid/lista</td>
+                </tr>
+                <tr>
+                    <td><strong>ManagePermissions.cshtml</strong></td>
+                    <td>Otorgar permisos / Revocar accesos / Extender expiración</td>
+                </tr>
+                <tr>
+                    <td><strong>IntegrityCheck.cshtml</strong></td>
+                    <td>Verificar SHA-256 / Validar HMAC-SHA256 / Estado ChaCha20-Poly1305</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Descifrado Client-Side</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Componente</th>
+                    <th>Función</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>VideoPlayer.cshtml</strong></td>
+                    <td>Reproductor Server-side / KEK re-cifrada usuario / Descifrado cliente-lado RSA / ChaCha20 descifrado JS</td>
+                </tr>
+                <tr>
+                    <td><strong>VideoPlayerE2E-ChaCha20.cshtml</strong></td>
+                    <td>Modo cero conocimiento / Llaves RSA-2048 efímeras / @@statelib-ChaCha20 / Descifrado de Cliente</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Middleware (Tubería)</h2>
+    <ul class="bullet-list">
+        <li>JWT Auth (Bearer Token)</li>
+        <li>Role-Based Auth</li>
+        <li>Error Handling &amp; Logging</li>
+        <li>Session Management (Cookie-based)</li>
+    </ul>
+</section>
+
+<section class="panel">
+    <h2>Capa Modelo de Negocio — SecureVideoStreaming.Services</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Métodos Principales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AuthService</strong></td>
+                    <td>RegisterAsync() — Validar email único, Salt / PBKDF2-SHA256, Validar RSA PBK, HMAC-SHA256 key; LoginAsync() — Buscar usuario email, Verificar PBKDF2 hash, Generar JWT; GetCurrentUserAsync(); GenerateJWTToken()</td>
+                </tr>
+                <tr>
+                    <td><strong>UserService</strong></td>
+                    <td>GetByIdAsync(); GetAllUsersAsync(); UpdateUserAsync(); DeleteUserAsync(); GetByEmailAsync()</td>
+                </tr>
+                <tr>
+                    <td><strong>VideoService</strong></td>
+                    <td>UploadVideoAsync() — Validar admin role, Guardar temp file, VideoEncryption y guardar CriptoData; GetVideosByAdminAsync(); GetVideoByIdAsync(); GetAllVideosAsync(); VerifyIntegrityAsync() — Validar SHA-256, HMAC-SHA256, Poly1305 AuthTag; UploadMetadataAsync(); DeleteVideoAsync()</td>
+                </tr>
+                <tr>
+                    <td><strong>VideoGridService</strong></td>
+                    <td>SearchVideosAsync(); GetVideoByIdAsync(); GetAllVideosAsync(); FilterByAdminAsync(); GetVideosWithPermissionsAsync(); GetAllVideosAsync(); GetVideosDetailsAsync()</td>
+                </tr>
+                <tr>
+                    <td><strong>VideoStreaming Service</strong></td>
+                    <td>GetVideoStreamAsync(); ValidateAccessAsync(); GetChunkAsync(); SupportRangeRequests()</td>
+                </tr>
+                <tr>
+                    <td><strong>Permission Service</strong></td>
+                    <td>GrantPermissionAsync() — Validar ownership, Validar fechas; CheckPermissionsAsync(); HasAccessAsync(); GetPermissionsByVideoAsync(); GetPermissionsByUserAsync(); ExtendPermissionAsync(); RequestAccessAsync(); ApprovePermissionAsync()</td>
+                </tr>
+                <tr>
+                    <td><strong>KeyDistribution Service</strong></td>
+                    <td>GetKeyPackageAsync() — Verificar permiso activo, Omitir si es admin, Obtener Cryptodata, Descifrar KEK (RSA Servidor), Recifrar KEK (RSA Usuario); GenerateStreamingTokenAsync(); ValidateStreamingTokenAsync()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Capa Criptográfica — SecureVideoStreaming.Services</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Parámetros / Métodos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>CHACHA20-Poly1305 Servicio</strong></td>
+                    <td>
+                        Parámetros: Key 256 bits (32 bytes), Nonce 96 bits (12 bytes), AuthTag 128 bits (16 bytes)<br>
+                        Decrypt(); GenerateKey(); GenerateNonce()
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Cifrado de Video Servicio</strong></td>
+                    <td>
+                        EncryptVideoAsync() — Leer video en trozos (80KB), Calcular SHA-256 original, Generar KEK (32 bytes), Cifrar KEK con RSA-OAEP, Generar Nonce, Cifrar con ChaCha20-Poly1305, Obtener AuthTag, Calcular HMAC del cifrado, Guardar encriptado;<br>
+                        DecryptVideoAsync(); VerifyIntegrityAsync() — SHA-256, HMAC-SHA256, Poly1305 AuthTag; CalculateFileHashAsync()
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>RSA Servicio</strong></td>
+                    <td>GenerateKeyPair(); Decrypt(); ExportPublicKey(); ExportPrivateKey(); ImportPrivateKey(); ImportPublicKey()</td>
+                </tr>
+                <tr>
+                    <td><strong>KEK Servicio</strong></td>
+                    <td>GenerateKek(); EncryptKek (RSA-OAEP); DecryptKek(); GenerateAndEncryptKek(publicKey)</td>
+                </tr>
+                <tr>
+                    <td><strong>Hash Servicio</strong></td>
+                    <td>ComputeSHA256(); ComputeSHA256Stream(); VerifyHash(); HashPassword(); VerifyPassword(); GenerateSalt(); DeriveKey()</td>
+                </tr>
+                <tr>
+                    <td><strong>HMAC Servicio</strong></td>
+                    <td>Parámetros: Key 64 bytes, Output 32 bytes<br>ComputeHMAC(); VerifyHMAC(); GenerateKey()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Manejo de Llaves — SecureVideoStreaming.Data</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Métodos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Manejo de Llaves Servicio</strong></td>
+                    <td>GetServerPublicKey(); GetServerPrivateKey(); GenerateServerKey(); ValidateKeys(); DeriveHMACKey(); SaveServerKeys()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>ApplicationDBContext</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>DbSet (SQL Server Express — Data_base_cripto)</th>
+                    <th>Almacenamiento (ApplicationDBContext)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>DbSet &lt;Usuarios&gt;</li>
+                            <li>DbSet &lt;ClavesUsuarios&gt;</li>
+                            <li>DbSet &lt;Videos&gt;</li>
+                            <li>DbSet &lt;DatosCriptográficosVideos&gt;</li>
+                            <li>DbSet &lt;Permisos&gt;</li>
+                            <li>DbSet &lt;RegistroAccesos&gt;</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <strong>Storage/Keys/</strong>
+                        <ul class="bullet-list">
+                            <li>server_private_key</li>
+                            <li>server_public_key</li>
+                        </ul>
+                        <strong>Storage/Videos/</strong>
+                        <ul class="bullet-list">
+                            <li>{guid}.cifrado</li>
+                            <li>Formato: Nonce (12 bytes) | AuthTag (16 bytes) | Ciphertext</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar Cédula de Servicio (Arquitectura)</h2>
+    <a class="doc-link" href="/pdfs/CedulaServicio-Equipo3-7CV4.pdf" target="_blank">
+        📄 Documento Completo - Cédula de Servicio (incluye diagrama de arquitectura)
+    </a>
+</section>

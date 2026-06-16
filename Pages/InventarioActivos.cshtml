@@ -1,0 +1,202 @@
+@page
+@{
+    ViewData["Title"] = "Inventario de Activos - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Inventario de Activos</h2>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>Área</strong></td><td>CÓMPUTO</td></tr>
+                <tr><td><strong>Nombre del Servicio o Sistema</strong></td><td>Transferencia de Archivos Cifrados</td></tr>
+                <tr><td><strong>ID del Servicio</strong></td><td>TAC-355415</td></tr>
+                <tr><td><strong>Fecha de Elaboración</strong></td><td>25/05/2026</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>3. Relación de Procesos</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Elementos</th>
+                    <th>Proceso 1</th>
+                    <th>Proceso 2</th>
+                    <th>Proceso 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Identificación del Proceso "Id. Proceso"</strong></td>
+                    <td>TAC_PROC_01</td>
+                    <td>TAC_PROC_02</td>
+                    <td>TAC_PROC_03</td>
+                </tr>
+                <tr>
+                    <td><strong>Nombre del proceso</strong></td>
+                    <td>Cifrado y resguardo de activos</td>
+                    <td>Gestión de permisos y llaves</td>
+                    <td>Descifrado y entrega (Zero-Knowledge)</td>
+                </tr>
+                <tr>
+                    <td><strong>Descripción</strong></td>
+                    <td>Este proceso describe cómo un Administrador o Dueño prepara la información antes de ser almacenada en el servidor.</td>
+                    <td>Este flujo ilustra la lógica de control de acceso basada en el análisis previo de permisos mencionado en el planteamiento del problema.</td>
+                    <td>Este proceso es vital para garantizar la Confidencialidad de Conocimiento Cero, asegurando que los datos solo se descifren en el dispositivo del receptor.</td>
+                </tr>
+                <tr>
+                    <td><strong>Actividades críticas</strong></td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Segmentación eficiente del archivo en memoria</li>
+                            <li>Cifrado asimétrico de la KEK mediante RSA-OAEP</li>
+                            <li>Generación y cálculo del código de autenticación HMAC-SHA256</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Validación y desencadenamiento del Token JWT</li>
+                            <li>Análisis dinámico y cruce de permisos en la BD</li>
+                            <li>Mapeo global de excepciones y estados degradados</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Descifrado asimétrico de la KEK en el cliente</li>
+                            <li>Verificación cruzada de firmas Hash y etiquetas de autenticación (AuthTag)</li>
+                            <li>Invocación automática al mecanismo de respaldo de llaves</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Factores de éxito</strong></td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Garantía de Cero Exposición</li>
+                            <li>Rendimiento Criptográfico Óptimo</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Alineación estricta con COBIT 2019</li>
+                            <li>Granularidad y Control Total</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="bullet-list">
+                            <li>Aislamiento del Entorno de Descifrado</li>
+                            <li>Transparencia y Usabilidad para el Consumidor</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>5. Relación de Activos de Información de Infraestructura por Proceso</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id. Proceso</th>
+                    <th>Id. Activo</th>
+                    <th>Activo de Información</th>
+                    <th>Descripción</th>
+                    <th>Clasificación</th>
+                    <th>Relación con otros activos</th>
+                    <th>Responsable</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3"><strong>TAC_PROC_01</strong></td>
+                    <td>ACT_HW_01</td>
+                    <td>Servidor de Datos</td>
+                    <td>Servidor con procesador multinúcleo y soporte para cifrado por hardware AES-NI</td>
+                    <td>Confidencial / Crítico</td>
+                    <td>ACT_SW_02</td>
+                    <td>Especialista en Ciberseguridad</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_01</td>
+                    <td>Entorno de Ejecución Python 3.12+</td>
+                    <td>Entorno de ejecución y bibliotecas (cryptography, pycryptodome) para cifrado ChaCha20-Poly1305</td>
+                    <td>Crítico</td>
+                    <td>ACT_HW_01</td>
+                    <td>Desarrollador Backend</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_01</td>
+                    <td>Almacenamiento en la Nube</td>
+                    <td>Almacenamiento cifrado externo para copias de seguridad de los logs de transferencia</td>
+                    <td>Confidencial</td>
+                    <td>ACT_HW_01</td>
+                    <td>Especialista en Ciberseguridad / PM</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><strong>TAC_PROC_02</strong></td>
+                    <td>ACT_HW_02</td>
+                    <td>Firewall perimetral</td>
+                    <td>Equipo de red con capacidad de gestión de VPNs y filtrado de paquetes Sockets.</td>
+                    <td>Crítico</td>
+                    <td>ACT_HW_01</td>
+                    <td>Ingeniero de Redes</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_02</td>
+                    <td>Base de Datos (SQLite/PostgreSQL)</td>
+                    <td>Sistema gestor utilizado para el registro de logs de transferencia, mapeo global de excepciones y cruce dinámico de permisos de acceso.</td>
+                    <td>Confidencial</td>
+                    <td>ACT_HW_01</td>
+                    <td>Desarrollador Backend</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_03</td>
+                    <td>Servicio de Internet Dedicado</td>
+                    <td>Enlace simétrico de 20 Mbps para garantizar la conexión entre el cliente y la base de datos durante la validación del Token JWT.</td>
+                    <td>Crítico</td>
+                    <td>ACT_HW_02</td>
+                    <td>Ingeniero de Redes</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><strong>TAC_PROC_03</strong></td>
+                    <td>ACT_HW_03</td>
+                    <td>Equipos de Cómputo (x6)</td>
+                    <td>Estaciones de trabajo asignadas al personal técnico para el desarrollo del código, control y pruebas de los clientes Python.</td>
+                    <td>Uso interno</td>
+                    <td>ACT_HW_01</td>
+                    <td>Ingeniero de QA y Redes</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_04</td>
+                    <td>Navegador Web / Cliente Git</td>
+                    <td>Sistema de control de versiones para la gestión del código fuente entre los desarrolladores y entorno cliente utilizado para la visualización y descarga del contenido en texto plano.</td>
+                    <td>Uso interno</td>
+                    <td>ACT_HW_01</td>
+                    <td>Desarrollador Backend</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_02</td>
+                    <td>Certificado SSL/TLS de la CA</td>
+                    <td>Certificados de seguridad emitidos por una Autoridad Certificadora (CA) para validar la identidad del servidor, establecer túneles de comunicación protegidos y asegurar que no haya suplantación de nodos.</td>
+                    <td>Crítico</td>
+                    <td>ACT_HW_02</td>
+                    <td>Especialista en Ciberseguridad</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar Inventario de Activos</h2>
+    <a class="doc-link" href="/pdfs/InventarioActivos-TAC355415.pdf" target="_blank">
+        📄 Documento Completo - Inventario de Activos
+    </a>
+</section>

@@ -1,0 +1,404 @@
+@page
+@{
+    ViewData["Title"] = "Caso de Negocio - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Información General del Servicio</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Parámetro</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Nombre del Servicio</strong></td>
+                    <td>Transferencia de Archivos Cifrados</td>
+                </tr>
+                <tr>
+                    <td><strong>ID del Servicio</strong></td>
+                    <td>TAC-355415</td>
+                </tr>
+                <tr>
+                    <td><strong>Fecha Propuesta de Inicio</strong></td>
+                    <td>04/02/2026</td>
+                </tr>
+                <tr>
+                    <td><strong>Fecha Propuesta de Término</strong></td>
+                    <td>12/06/2026</td>
+                </tr>
+                <tr>
+                    <td><strong>Nombre del Administrador del Servicio</strong></td>
+                    <td>Ricardo Camacho Zavala</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Antecedentes</h2>
+    <p>
+        Antes de diseñar una solución propia, es fundamental comprender el contexto tecnológico
+        y las herramientas existentes que hoy intentan resolver los desafíos asociados con la
+        transferencia segura de información. El entorno actual muestra una creciente demanda por
+        proteger grandes volúmenes de datos y mantener su confidencialidad en todas las etapas
+        del proceso.
+    </p>
+    <p>
+        En el panorama tecnológico de 2026, las organizaciones actuales enfrentan la necesidad
+        de transferir volúmenes masivos de datos (como contenido multimedia en alta resolución
+        y registros de infraestructura de red) y la carencia de protocolos de cifrado de
+        conocimiento cero (Zero-Knowledge) que protejan la información durante todo su ciclo
+        de vida.
+    </p>
+
+    <h3>Soluciones Existentes en el Mercado</h3>
+    
+    <h4>Box</h4>
+    <p>
+        Busca simplificar el envío de archivos cifrados manteniendo la información del usuario
+        segura, utilizando una herramienta de Inteligencia Artificial llamada Intelligent Content
+        Cloud. Con su plataforma de envío seguro de archivos, la información se mantiene segura
+        mediante cifrado AES-256 y algoritmos TLS 1.2, permitiendo cifrar datos estáticos y en
+        tránsito. Ofrece gestión de llaves de cifrado, controles de acceso granulares, protección
+        de fuga de datos y cumplimiento de alta confianza.
+    </p>
+
+    <h4>Cerberus</h4>
+    <p>
+        Es un sistema de transferencia de archivos flexible a través de un conjunto de protocolos
+        como FTPS, FTP, SFTP, HTTP/S, SCP y One-Time Password for Public Shares. Cuenta con
+        verificación robusta de la integridad de los archivos mediante sumas de comprobación
+        seguras basadas en funciones hash criptográficas SHA-512, SHA-256 o SHA-1. Para las
+        funciones de seguridad, trabaja con cifrados de clave pública SSH2, especificación de
+        cifrado SSL, verificación del certificado del cliente, y compatibilidad con claves
+        públicas y privadas RSA, DSA y de curva elíptica.
+    </p>
+
+    <h4>GoAnywhere</h4>
+    <p>
+        GoAnywhere es compatible con varios protocolos de cifrado y lleva la transmisión de
+        archivos cifrados un paso más allá. La transferencia gestionada de archivos garantiza
+        el cumplimiento normativo a nivel empresarial mediante auditorías e informes detallados.
+        Los datos en reposo se cifran con Open PGP, GPG o ZIP con AES, mientras que en tránsito
+        se protegen mediante SFTP, FTPS, HTTPS o AS2. También permite crear carpetas cifradas
+        y correo electrónico seguro para ampliar el nivel de seguridad en toda la organización.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Justificación Técnica del Servicio</h2>
+    
+    <h3>Planteamiento del Problema Técnico Específico</h3>
+    <p>
+        La problemática actual consiste en que existe una alta demanda por asegurar grandes
+        cantidades de datos y mantenerlos en un entorno confidencial en todo momento, llevando
+        a una falta impactante de un sistema o herramienta que permita el traslado de información
+        de manera segura, íntegra y confidencial dentro y fuera de la organización, tanto para
+        colaboradores como para clientes.
+    </p>
+    <p>
+        Se busca crear un sistema que permita la transferencia de archivos donde se les mantenga
+        su integridad y confidencialidad, brindando únicamente el acceso de visualización y
+        manipulación a los usuarios receptores que los usuarios emisores definan como aptos para
+        obtener dicho acceso. El servicio específico de transferencia de archivos cifrados consiste
+        en un cifrado de los archivos en todo momento en el que se realiza su traslado, desde su
+        almacenamiento, transporte y recepción.
+    </p>
+
+    <h3>Viabilidad Técnica</h3>
+    <p>
+        El servicio se fundamenta en una arquitectura cliente-servidor robusta, desarrollada
+        íntegramente en el lenguaje C# para garantizar una lógica de comunicación eficiente y
+        segura utilizando Visual Studio Code e integración con SQL Server Management Studio.
+    </p>
+    <p>
+        La solución integra bibliotecas criptográficas de vanguardia que implementan el estándar
+        AES, asegurando que los datos solo sean legibles por el receptor autorizado mediante una
+        gestión de llaves de conocimiento cero, donde el proveedor no tiene acceso a los secretos
+        del usuario, gracias a la inclusión de algoritmos de cifrado como ChaCha20, RSA-OAEP,
+        SHA-256 y HMAC.
+    </p>
+    <p>
+        El proyecto incorpora el uso de Python como herramienta estratégica para la automatización
+        de pruebas y el análisis detallado de registros (logs), lo que permite una auditoría
+        constante del sistema. Al validar cada envío mediante funciones Hash, el servicio asegura
+        que la información no haya sido alterada durante su trayecto, cumpliendo así con los
+        objetivos de control de COBIT 2019.
+    </p>
+
+    <h3>Alternativas y Superioridad</h3>
+    <p>
+        Para Box: No se menciona si maneja el procedimiento de cifrado de conocimiento cero,
+        que es una de las características más importantes que establece el servicio de transferencia
+        de archivos cifrados.
+    </p>
+    <p>
+        Para Cerberus: Se enfocan en un viaje seguro de la información, pero no se asegura que
+        los archivos mantengan una confidencialidad absoluta. El sistema de transferencia de
+        archivos cifrados se diferencia de Cerberus, mostrando que en todo momento los archivos
+        se encuentran cifrados y aún cuando se presente una fuga de información, al extractor no
+        le servirán de nada si no encuentra la manera de descifrar dichos datos.
+    </p>
+    <p>
+        Para GoAnywhere: Aparentemente logran cumplir con las mismas funcionalidades, pero puede
+        terminar siendo una cuestión redundante que implique mayores costos e innecesarios, dejando
+        al sistema en desarrollo como una solución mayormente viable respecto a costos, funcionalidades
+        y requerimientos tanto del usuario como del negocio cubiertos.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Alcance del Proyecto</h2>
+    <p>
+        El proyecto comprende el diseño, desarrollo técnico e implementación de la solución
+        de transferencia cifrada exclusivamente para el nodo central del departamento de IT de
+        la institución. El servicio estará delimitado operativamente a la red local (LAN)
+        administrativa, garantizando la configuración del servidor y la gestión de llaves
+        criptográficas para un máximo de 50 estaciones de trabajo concurrentes.
+    </p>
+    <p>
+        El compromiso de entrega finaliza con la capacitación técnica de los administradores de red
+        involucrados y la entrega de la documentación operativa, excluyendo del alcance el soporte
+        técnico a usuarios finales de otros departamentos o la expansión del servicio a redes externas.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Objetivo del Proyecto</h2>
+    <p>
+        Implementar un sistema robusto de transferencia de archivos cifrados mediante el
+        desarrollo de una arquitectura cliente-servidor y la integración de bibliotecas criptográficas
+        avanzadas para la gestión segura de llaves, con el fin de prevenir el robo de información
+        sensible, mitigar ataques de interceptación y asegurar el cumplimiento de las normativas
+        de privacidad de datos vigentes de la organización.
+    </p>
+    <p>
+        Garantizar la integridad y confidencialidad de la información crítica del negocio, y la
+        certeza de que el acceso a la información compartida es validado y verificado gracias a
+        un análisis de permisos brindados por un usuario emisor.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Riesgos Clave Identificados</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Descripción del Riesgo</th>
+                    <th>Impacto Potencial</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>Compromiso de la integridad en la gestión de secretos: Fuga o pérdida de las llaves criptográficas.</td>
+                    <td>Inaccesibilidad permanente de los datos o acceso no autorizado.</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>Restricciones de interoperabilidad en la infraestructura de red: Bloqueos de tráfico en los Sockets.</td>
+                    <td>Configuraciones de seguridad preexistentes en los Firewalls podrían bloquear la comunicación.</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>Degradación del rendimiento por latencia de cifrado: Retrasos significativos en transferencias.</td>
+                    <td>Carga computacional del procesamiento de cifrado en tiempo real afectando velocidad.</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>Falla en el protocolo de autenticación cliente-servidor: Errores en el proceso de enlace (Handshake).</td>
+                    <td>Suplantación de nodos o acceso de clientes no validados al repositorio de archivos.</td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>Exposición de datos por configuración inadecuada del usuario: Errores humanos durante parametrización.</td>
+                    <td>Vulnerabilidades introducidas por manejo incorrecto de la interfaz por parte del personal de IT.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Beneficios Esperados</h2>
+    <p>
+        <strong>Confidencialidad Absoluta:</strong> El beneficio primordial reside en el establecimiento
+        de una garantía de confidencialidad absoluta en el intercambio de activos digitales críticos.
+        Al implementar este servicio, se elimina la exposición de archivos sensibles ante ataques de
+        "Man-in-the-Middle" o interceptaciones no autorizadas.
+    </p>
+    <p>
+        <strong>Cumplimiento y Gobernanza:</strong> La implementación de este sistema representa una
+        reducción significativa del riesgo de sanciones y multas por incumplimiento de normativas de
+        protección de datos. Al alinear el servicio con los objetivos de control de COBIT 2019, la
+        empresa adquiere una postura proactiva ante auditorías, demostrando que posee controles técnicos
+        robustos para la gestión de riesgos de seguridad de la información.
+    </p>
+    <p>
+        <strong>Optimización Operativa:</strong> El servicio permite la centralización y auditabilidad
+        de la transferencia de archivos bajo una herramienta única y controlada, eliminando el uso de
+        plataformas externas no seguras o "Shadow IT". Al contar con una solución propia, la organización
+        obtiene visibilidad total sobre quién, cómo y cuándo se transmiten los datos, facilitando la
+        generación de indicadores de eficiencia y la detección temprana de anomalías.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Personal Involucrado en el Proyecto</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Perfil</th>
+                    <th>Cantidad</th>
+                    <th>Tipo de Contratación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Líder de Proyecto</strong></td>
+                    <td>1</td>
+                    <td>Personal de base</td>
+                </tr>
+                <tr>
+                    <td><strong>Analista de Procesos de Negocio</strong></td>
+                    <td>2</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>Desarrollador Backend Senior</strong></td>
+                    <td>2</td>
+                    <td>Por honorarios</td>
+                </tr>
+                <tr>
+                    <td><strong>Especialista en Ciberseguridad</strong></td>
+                    <td>1</td>
+                    <td>Personal de base</td>
+                </tr>
+                <tr>
+                    <td><strong>Ingeniero de Automatización</strong></td>
+                    <td>1</td>
+                    <td>Por honorarios</td>
+                </tr>
+                <tr>
+                    <td><strong>Administrador de Redes</strong></td>
+                    <td>1</td>
+                    <td>Personal de base</td>
+                </tr>
+                <tr>
+                    <td><strong>Técnico de Soporte e Implementación</strong></td>
+                    <td>2</td>
+                    <td>Personal de base</td>
+                </tr>
+                <tr>
+                    <td><strong>Técnico de Pruebas de Calidad</strong></td>
+                    <td>2</td>
+                    <td>Por honorarios</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Justificación Económica del Servicio</h2>
+
+    <h3>Estudio de Mercado</h3>
+    <p>
+        La demanda por soluciones de transferencia segura de archivos ha impulsado la consolidación
+        de diversas plataformas que cubren necesidades específicas de protección, velocidad y
+        cumplimiento normativo. En el mercado actual destacan servicios como Tresorit, orientado a
+        sectores con altos requerimientos de privacidad gracias a su arquitectura de conocimiento cero
+        y cifrado de extremo a extremo. IBM Aspera se posiciona como líder en la transferencia de
+        grandes volúmenes con su protocolo FASP, capaz de mover datos hasta cien veces más rápido
+        que los métodos tradicionales.
+    </p>
+    <p>
+        Si bien existen herramientas maduras con funcionalidades relevantes, ninguna ofrece una
+        combinación equilibrada entre confidencialidad absoluta, control interno del ciclo de vida
+        del cifrado, flexibilidad técnica, y costos sostenibles para la institución. Esto justifica
+        la viabilidad de desarrollar un servicio propio, estratégicamente alineado con las necesidades
+        específicas del entorno organizacional y sin los compromisos económicos y operativos asociados
+        a soluciones comerciales.
+    </p>
+
+    <h3>Ventajas Económicas</h3>
+    <ul class="bullet-list">
+        <li>Eliminación de costos de licencias perpetuas a competidores externos</li>
+        <li>Control absoluto sobre la propiedad intelectual</li>
+        <li>Retorno de inversión superior a soluciones comerciales</li>
+        <li>Optimización mediante uso de software de código abierto</li>
+        <li>Reducción de costos de mantenimiento a largo plazo</li>
+        <li>Visibilidad total sobre operaciones y costos</li>
+    </ul>
+</section>
+
+<section class="panel">
+    <h2>Glosario Técnico del Proyecto</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Término</th>
+                    <th>Definición</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AES</strong></td>
+                    <td>Algoritmo de cifrado por bloques utilizado como estándar global para proteger datos sensibles mediante claves de 128, 192 o 256 bits.</td>
+                </tr>
+                <tr>
+                    <td><strong>ChaCha20-Poly1305</strong></td>
+                    <td>Algoritmo de cifrado de flujo de alta velocidad que garantiza tanto la confidencialidad como la integridad de los datos.</td>
+                </tr>
+                <tr>
+                    <td><strong>Cifrado de Conocimiento Cero</strong></td>
+                    <td>Estrategia de seguridad donde el proveedor del servicio no posee las llaves de acceso, garantizando privacidad total al usuario.</td>
+                </tr>
+                <tr>
+                    <td><strong>C# (.NET)</strong></td>
+                    <td>Lenguaje de programación orientado a objetos de Microsoft utilizado para la lógica robusta del servicio.</td>
+                </tr>
+                <tr>
+                    <td><strong>COBIT 2019</strong></td>
+                    <td>Marco de referencia para el gobierno y la gestión de TI, utilizado para alinear el servicio con normativas de privacidad.</td>
+                </tr>
+                <tr>
+                    <td><strong>RSA-OAEP</strong></td>
+                    <td>Esquema de cifrado asimétrico que mejora la seguridad en el intercambio de llaves.</td>
+                </tr>
+                <tr>
+                    <td><strong>SHA-256</strong></td>
+                    <td>Función hash criptográfica que genera una huella digital de 256 bits para verificación de integridad.</td>
+                </tr>
+                <tr>
+                    <td><strong>HMAC</strong></td>
+                    <td>Código de autenticación basado en hash que garantiza integridad y autenticidad.</td>
+                </tr>
+                <tr>
+                    <td><strong>TLS</strong></td>
+                    <td>Protocolo criptográfico que proporciona comunicaciones seguras por red sobre capas de Sockets.</td>
+                </tr>
+                <tr>
+                    <td><strong>Socket</strong></td>
+                    <td>Punto final de un enlace de comunicación bidireccional entre dos programas en la red.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar Caso de Negocio Completo</h2>
+    <a class="doc-link" href="/pdfs/CasoNegocio-Equipo3-7CV4.pdf" target="_blank">
+        📄 Documento Completo - Caso de Negocio Detallado
+    </a>
+</section>

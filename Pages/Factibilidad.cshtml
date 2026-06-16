@@ -1,0 +1,417 @@
+@page
+@{
+    ViewData["Title"] = "Factibilidad - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Factibilidad Operativa</h2>
+    <p>
+        Análisis de la viabilidad operativa del proyecto de transferencia de archivos cifrados,
+        incluyendo la distribución de días laborales, horas de trabajo, recursos humanos y
+        costos asociados a lo largo de 5 meses de desarrollo.
+    </p>
+</section>
+
+<section class="panel">
+    <h3>Distribución de Días Laborales y Horas</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Mes</th>
+                    <th>Días Totales</th>
+                    <th>Fin de Semana</th>
+                    <th>Días Inhábiles</th>
+                    <th>Días Laborales</th>
+                    <th>Horas de Trabajo por Día</th>
+                    <th>Horas Totales</th>
+                    <th>Días Totales (8 hrs/día)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Febrero</strong></td>
+                    <td>28</td>
+                    <td>7</td>
+                    <td>1</td>
+                    <td>20</td>
+                    <td>8</td>
+                    <td>160</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td><strong>Marzo</strong></td>
+                    <td>31</td>
+                    <td>9</td>
+                    <td>3</td>
+                    <td>19</td>
+                    <td>8</td>
+                    <td>152</td>
+                    <td>19</td>
+                </tr>
+                <tr>
+                    <td><strong>Abril</strong></td>
+                    <td>30</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>20</td>
+                    <td>8</td>
+                    <td>160</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td><strong>Mayo</strong></td>
+                    <td>31</td>
+                    <td>9</td>
+                    <td>3</td>
+                    <td>19</td>
+                    <td>8</td>
+                    <td>152</td>
+                    <td>19</td>
+                </tr>
+                <tr>
+                    <td><strong>Junio</strong></td>
+                    <td>30</td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>22</td>
+                    <td>8</td>
+                    <td>176</td>
+                    <td>22</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #F0F0F046;">
+                    <td colspan="7">Total Días Laborales Disponibles</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h3>Inversión en Capital Humano</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Rol</th>
+                    <th>Descripción</th>
+                    <th>Sueldo Mensual</th>
+                    <th>Total</th>
+                    <th>Costo Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Líder de Proyecto (PM)</strong></td>
+                    <td>Responsable de la planeación, gestión de riesgos, cumplimiento de tiempos y coordinación de los recursos.</td>
+                    <td>$40,000</td>
+                    <td>$40,000</td>
+                    <td>$200,000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Desarrolladores Backend</strong></td>
+                    <td>Encargados de programar la arquitectura cliente-servidor, la lógica de los Sockets y la integración de bibliotecas.</td>
+                    <td>$30,000</td>
+                    <td>$60,000</td>
+                    <td>$150,000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Especialista en Ciberseguridad</strong></td>
+                    <td>Diseña la arquitectura de cifrado (AES/TLS), gestiona el ciclo de vida de las llaves y asegura el cumplimiento de normativas.</td>
+                    <td>$40,000</td>
+                    <td>$80,000</td>
+                    <td>$200,000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Ingeniero de Redes y QA</strong></td>
+                    <td>Configura la compatibilidad con firewalls y realiza pruebas de estrés para medir la latencia y la integridad de los datos.</td>
+                    <td>$36,000</td>
+                    <td>$36,000</td>
+                    <td>$180,000</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #F0F0F046;">
+                    <td colspan="4">Total Mensual</td>
+                    <td>$216,000</td>
+                    <td>$730,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Factibilidad Tecnológica</h2>
+    <p>
+        Análisis de la infraestructura hardware, software y servicios requeridos para la
+        implementación exitosa del sistema de transferencia de archivos cifrados.
+    </p>
+</section>
+
+<section class="panel">
+    <h3>Inversión en Hardware</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Costo Unitario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Servidor de Datos</strong></td>
+                    <td>Servidor con procesador multinúcleo y soporte para cifrado por hardware (AES-NI).</td>
+                    <td>$25,000</td>
+                    <td>$25,000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Servidor General</strong></td>
+                    <td>Servidor con procesador multinúcleo y soporte para cifrado por hardware (AES-NI).</td>
+                    <td>$25,000</td>
+                    <td>$25,000</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Equipo de Cómputo</strong></td>
+                    <td>Estaciones de trabajo para desarrollo y pruebas de los clientes Python.</td>
+                    <td>$17,000</td>
+                    <td>$102,000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Firewall</strong></td>
+                    <td>Equipo de red con capacidad de gestión de VPNs y filtrado de paquetes.</td>
+                    <td>$8,500</td>
+                    <td>$8,500</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Router</strong></td>
+                    <td>Equipo de red con capacidad para router paquetes entre redes diferentes.</td>
+                    <td>$8,500</td>
+                    <td>$8,500</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Switch</strong></td>
+                    <td>Equipo de red con capacidad para reenviar tráfico dentro de la misma red.</td>
+                    <td>$8,500</td>
+                    <td>$8,500</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #F0F0F046;">
+                    <td colspan="4">Total Inversión en Hardware</td>
+                    <td>$177,500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h3>Inversión en Software</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Costo Unitario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Sistema Operativo</strong></td>
+                    <td>Distribución Debian LTS o Ubuntu 24.04 para el servidor.</td>
+                    <td>$0 (GPL)</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Entorno C#</strong></td>
+                    <td>Entorno C# (.NET 5) y bibliotecas criptográficas (cryptography, pycryptodome).</td>
+                    <td>$0 (Open Source)</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>IDE de Desarrollo</strong></td>
+                    <td>Visual Studio Code o PyCharm (Community Edition).</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Base de Datos</strong></td>
+                    <td>SQLite o PostgreSQL para el registro de logs de transferencia.</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Git</strong></td>
+                    <td>Sistema de control de versiones para la gestión del código fuente entre los desarrolladores.</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Wireshark</strong></td>
+                    <td>Herramienta de análisis de protocolos para verificar que el tráfico en los sockets sea ilegible.</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Postman</strong></td>
+                    <td>Cliente para realizar pruebas de conectividad y endpoints durante el desarrollo.</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #F0F0F046;">
+                    <td colspan="4">Total Inversión en Software</td>
+                    <td>$0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h3>Inversión en Servicios</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Frecuencia</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Costo Est. (Mensual)</th>
+                    <th>Costo Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Mensual</strong></td>
+                    <td>Internet Dedicado</td>
+                    <td>Enlace simétrico para garantizar velocidad de subida en el streaming.</td>
+                    <td>$1,200</td>
+                    <td>$7,200</td>
+                </tr>
+                <tr>
+                    <td><strong>Anual</strong></td>
+                    <td>Certificado SSL/TLS</td>
+                    <td>Certificados emitidos por CA para validar la identidad del servidor.</td>
+                    <td>$1,500</td>
+                    <td>$9,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Mensual</strong></td>
+                    <td>Respaldo en la Nube</td>
+                    <td>Almacenamiento cifrado externo para copias de seguridad de los logs.</td>
+                    <td>$400</td>
+                    <td>$2,400</td>
+                </tr>
+                <tr>
+                    <td><strong>Bimestral</strong></td>
+                    <td>Servicio de Electricidad</td>
+                    <td>Servicio de suministro de electricidad para la infraestructura.</td>
+                    <td>$1,000</td>
+                    <td>$6,000</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #F0F0F046;">
+                    <td colspan="4">Total Inversión en Servicios</td>
+                    <td>$24,600</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Factibilidad Económica</h2>
+    <h3>Costo Total del Proyecto</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Componente</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Factibilidad Operativa</strong> (Capital Humano)</td>
+                    <td>$730,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Factibilidad Tecnológica - Hardware</strong></td>
+                    <td>$177,500</td>
+                </tr>
+                <tr>
+                    <td><strong>Factibilidad Tecnológica - Software</strong></td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td><strong>Factibilidad Tecnológica - Servicios</strong></td>
+                    <td>$24,600</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #F0F0F046; font-size: 1.1em;">
+                    <td><strong>COSTO TOTAL DEL PROYECTO</strong></td>
+                    <td><strong>$932,100</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Justificación de Inversión</h2>
+    <p>
+        La implementación de este servicio se justifica por la necesidad crítica de blindar la
+        transferencia de activos digitales sensibles, como registros de red y contenido multimedia
+        de alta resolución, ante un panorama de ciberseguridad hostil en 2026. A través de una
+        arquitectura cliente-servidor desarrollada en C# con protocolos de cifrado de
+        "conocimiento cero", el proyecto garantiza la soberanía total de los datos y la eliminación
+        de vulnerabilidades en tránsito en un periodo de ejecución de cinco meses.
+    </p>
+    <p>
+        Esta solución no solo mitiga riesgos de interceptación y accesos no autorizados, sino que
+        establece una infraestructura técnica robusta y personalizada que supera las limitaciones
+        de seguridad de los métodos de transferencia tradicionales.
+    </p>
+    <p>
+        Desde la perspectiva financiera y operativa, el proyecto representa una inversión
+        estratégica de $932,100 MXN, optimizada mediante el uso de software de código abierto y
+        concentrada en talento especializado y hardware con aceleración criptográfica AES-NI. Al
+        contrastar este monto con el impacto económico y reputacional que supondría una brecha
+        de seguridad o el pago de licencias perpetuas a competidores externos, el servicio
+        desarrollado ofrece un retorno de inversión superior y un control absoluto sobre la
+        propiedad intelectual.
+    </p>
+    <p>
+        La inclusión de servicios de respaldo y monitoreo dentro del presupuesto asegura la
+        continuidad del negocio, transformando la gestión de la seguridad en una ventaja
+        competitiva sostenible y alineada con los estándares de gobernanza de TI actuales.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Descargar Análisis de Factibilidad Completo</h2>
+    <a class="doc-link" href="/pdfs/FactibilidadOperativa-Equipo-7CV4.pdf" target="_blank">
+        📄 Documento Completo - Factibilidad Operativa y Tecnológica
+    </a>
+</section>

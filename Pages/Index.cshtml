@@ -1,0 +1,81 @@
+@page
+@{
+    ViewData["Title"] = "Portada - SecureTransfer";
+}
+
+<section class="panel hero-panel">
+    <div class="hero-grid">
+        <div>
+            <p class="eyebrow">Proyecto de Gobierno de TI</p>
+            <h2>Transferencia de Archivos Cifrados</h2>
+            <p>
+                Plataforma web para transferencia segura de archivos con cifrado, control de acceso granular,
+                distribución de claves y verificación de integridad. El sitio organiza el sistema en módulos
+                independientes para facilitar el ingreso, acceso, reproducción y asignación de permisos de 
+                dichos archivos. Implementa un modelo de claves efímeras que se generan al momento de la transferencia 
+                y se destruyen automáticamente después de un período definido, garantizando que los archivos solo 
+                puedan ser descifrados durante una ventana de tiempo controlada, reduciendo el riesgo de acceso no 
+                autorizado a largo plazo.
+            </p>
+            <p>
+                Además, el sistema incluye un mecanismo de validación de integridad que verifica que los archivos 
+                descifrados no hayan sido manipulados durante la transferencia, asegurando que el contenido recibido 
+                sea exactamente el mismo que el enviado. Y finalmente, el sitio cuenta con un panel de administración 
+                para gestionar usuarios, permisos y monitorear las transferencias, con un enfoque en la seguridad por 
+                diseño y la auditabilidad de todas las acciones relacionadas con los archivos protegidos.
+            </p>
+        </div>
+        <div class="hero-card">
+            <h3>Equipo de desarrollo</h3>
+            <ul>
+                <li>Camacho Zavala Ricardo</li>
+                <li>García García Aram Jesua</li>
+                <li>Rodríguez Martínez Erick Damián</li>
+            </ul>
+            <p>IPN - ESCOM | 7CV4 | Rocío Palacios Solano</p>
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Módulos del sitio</h2>
+    <div class="index-grid">
+        <a asp-page="/Indice">Índice</a>
+        <a asp-page="/Introduccion">Introducción</a>
+        <a asp-page="/Objetivo">Objetivo</a>
+        <a asp-page="/DescripcionServicio">Descripción del Servicio</a>
+        <a asp-page="/MisionVisionValores">Misión, Visión y Valores</a>
+        <a asp-page="/MetasCorporativas">Metas Corporativas</a>
+        <a asp-page="/MetasTI">Metas de TI</a>
+        <a asp-page="/CascadaMetas">Cascada de Metas</a>
+        <a asp-page="/MapaEstrategico">Mapa Estratégico</a>
+        <a asp-page="/Factibilidad">Factibilidad</a>
+        <a asp-page="/CasoNegocio">Caso de Negocio</a>
+        <a asp-page="/ProcesosCriticos">Procesos Críticos</a>
+        <a asp-page="/CedulaServicio">Cédula de Servicio</a>
+        <a asp-page="/ArquitecturaServicio">Arquitectura Criptográfica</a>
+        <a asp-page="/InventarioActivos">Inventario de Activos</a>
+        <a asp-page="/MatrizRiesgos">Matriz de Riesgos</a>
+        <a asp-page="/BIATactico">BIA Táctico</a>
+        <a asp-page="/BIAOperacional">BIA Operacional</a>
+        <a asp-page="/PlanContinuidad">Plan de Continuidad</a>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Características Principales</h2>
+    <div class="card-grid three-col">
+        <article class="card">
+            <h3>Cifrado End-to-End</h3>
+            <p>Algoritmos ChaCha20-Poly1305, AES-256 y RSA para máxima protección de datos en cada transferencia.</p>
+        </article>
+        <article class="card">
+            <h3>Trazabilidad Completa</h3>
+            <p>Auditoría detallada de todas las operaciones y accesos para cumplimiento normativo.</p>
+        </article>
+        <article class="card">
+            <h3>Cumplimiento Normativo</h3>
+            <p>Estándares ISO 27001, NIST, GDPR, HIPAA y regulaciones internacionales de seguridad.</p>
+        </article>
+    </div>
+</section>

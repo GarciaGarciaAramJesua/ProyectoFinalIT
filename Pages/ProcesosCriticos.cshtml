@@ -1,0 +1,316 @@
+@page
+@{
+    ViewData["Title"] = "Procesos Críticos - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Procesos Críticos del Sistema SecureTransfer</h2>
+    <p>
+        SecureTransfer identificó 3 procesos clave que definen la operatividad y seguridad del servicio. 
+        Cada proceso cuenta con entradas, procedimientos específicos y productos que garantizan la protección 
+        integral de la información transferida.
+    </p>
+    <h2>Diagrama de Procesos de Nivel 1</h2>
+    <figure class="diagram-block" id="diagrama-proceso-nivel1">
+        <img src="/images/DiagramaProcesoNivel1.png"
+             alt="Diagrama de Procesos de Nivel 1"
+             class="diagram-img"
+             onerror="this.closest('figure').classList.add('no-img')" />
+        <figcaption>
+            Diagrama de Procesos de Nivel 1
+            <br /><span class="diagram-path">wwwroot/images/DiagramaProcesoNivel1.png</span>
+        </figcaption>
+    </figure>
+</section>
+
+<section class="panel">
+    <h2>1. Cifrado y Resguardo de Activos</h2>
+    <p>
+        Este proceso describe cómo un Administrador o Dueño prepara y cifra la información antes de ser 
+        almacenada en el servidor. Implementa criptografía de clase empresarial con algoritmos simétricos 
+        (ChaCha20-Poly1305) y asimétricos (RSA-OAEP) para máxima protección.
+    </p>
+    
+    <h3>Actividades del Proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Paso</th>
+                    <th>Actividad</th>
+                    <th>Descripción Técnica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Selección de Origen</td>
+                    <td>El Administrador selecciona un archivo para subir al sistema.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Chunking (Segmentación)</td>
+                    <td>Lectura del archivo en trozos de 80KB para optimizar memoria y procesamiento.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Generación de Secretos</td>
+                    <td>Generación de llave KEK (Key Encryption Key, 32 bytes) y Nonce (96 bits).</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Criptografía Simétrica</td>
+                    <td>Cifrado del archivo utilizando el algoritmo ChaCha20-Poly1305 con autenticación.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Protección de Llaves (Wrapping)</td>
+                    <td>Cifrado de la llave KEK mediante RSA-OAEP para protección asimétrica.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Validación de Integridad</td>
+                    <td>Cálculo de integridad mediante funciones SHA-256 y HMAC.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Persistencia de Datos</td>
+                    <td>Guardado del archivo cifrado y metadatos criptográficos en SQL Server.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Finalización</td>
+                    <td>Confirmación de carga exitosa con registro en auditoría.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Algoritmos y Estándares</h3>
+    <div class="chip-group">
+        <span>ChaCha20-Poly1305</span>
+        <span>RSA-OAEP</span>
+        <span>SHA-256</span>
+        <span>HMAC</span>
+        <span>FIPS 140-2</span>
+    </div>
+    <figure class="diagram-block" id="diagrama-proceso1">
+        <img src="/images/DiagramaFlujoProceso1.png"
+             alt="Diagrama de Flujo — Cifrado y Resguardo de Activos"
+             class="diagram-img"
+             onerror="this.closest('figure').classList.add('no-img')" />
+        <figcaption>
+            Diagrama de Flujo — Proceso 1: Cifrado y Resguardo de Activos
+            <br /><span class="diagram-path">wwwroot/images/DiagramaFlujoProceso1.png</span>
+        </figcaption>
+    </figure>
+</section>
+
+<section class="panel">
+    <h2>2. Gestión de Permisos y Llaves (Gobernanza)</h2>
+    <p>
+        Este flujo ilustra la lógica de control de acceso basada en permisos validados. Implementa tokens JWT, 
+        validación de roles y gestión dinámica de permisos con expiración temporal para garantizar que solo 
+        usuarios autorizados accedan a recursos específicos.
+    </p>
+    
+    <h3>Actividades del Proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Paso</th>
+                    <th>Actividad</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Inicio de Solicitud</td>
+                    <td>Un Usuario Consumidor solicita acceso a un archivo específico.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Decisión de Permisos</td>
+                    <td>¿Existe un permiso activo otorgado por el emisor? (Validación en base de datos)</td>
+                </tr>
+                <tr>
+                    <td>3a</td>
+                    <td>Acción Negativa</td>
+                    <td>Se notifica al emisor la solicitud de acceso pendiente de autorización.</td>
+                </tr>
+                <tr>
+                    <td>3b</td>
+                    <td>Acción Positiva</td>
+                    <td>El sistema valida la fecha de expiración del permiso (Time-based Access Control).</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Validación de Token</td>
+                    <td>Validación del rol del usuario mediante Token JWT y extracción de claims.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Generación de Paquete</td>
+                    <td>Generación de paquete de llaves para el receptor autorizado con materiales criptográficos.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Habilitación</td>
+                    <td>Habilitación de la interfaz de descarga/visualización para el consumidor autorizado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Mecanismos de Control</h3>
+    <div class="card-grid three-col">
+        <article class="card">
+            <h3>Validación JWT</h3>
+            <p>Tokens cifrados con información de rol, identidad y fecha de expiración.</p>
+        </article>
+        <article class="card">
+            <h3>Control Temporal</h3>
+            <p>Permisos con fecha de vencimiento automático para acceso limitado en tiempo.</p>
+        </article>
+        <article class="card">
+            <h3>RBAC (Role-Based Access Control)</h3>
+            <p>Control granular de permisos basado en roles del usuario en la organización.</p>
+        </article>
+    </div>
+    <figure class="diagram-block" id="diagrama-proceso2">
+        <img src="/images/DiagramaFlujoProceso2.png"
+             alt="Diagrama de Flujo — Gestión de Permisos y Llaves"
+             class="diagram-img"
+             onerror="this.closest('figure').classList.add('no-img')" />
+        <figcaption>
+            Diagrama de Flujo — Proceso 2: Gestión de Permisos y Llaves (Gobernanza)
+            <br /><span class="diagram-path">wwwroot/images/DiagramaFlujoProceso2.png</span>
+        </figcaption>
+    </figure>
+</section>
+
+<section class="panel">
+    <h2>3. Descifrado en el Cliente (Zero-Knowledge)</h2>
+    <p>
+        Este proceso es vital para garantizar la Confidencialidad de Conocimiento Cero, asegurando que los datos 
+        solo se descifren en el dispositivo del receptor. El servidor nunca tiene acceso a datos en texto plano, 
+        proporcionando máximo nivel de privacidad y seguridad.
+    </p>
+    
+    <h3>Actividades del Proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Paso</th>
+                    <th>Actividad</th>
+                    <th>Descripción Técnica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Inicio de Descarga</td>
+                    <td>El Usuario Receptor inicia la descarga del archivo cifrado desde el servidor.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Envío Cifrado</td>
+                    <td>El servidor envía el archivo cifrado y la KEK protegida mediante RSA con llave pública del cliente.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Autenticación</td>
+                    <td>Autenticación del usuario en la sesión para obtener su llave privada RSA del navegador.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Descifrado de Llave</td>
+                    <td>Descifrado de la KEK (Key Encryption Key) en el lado del cliente utilizando su llave privada.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Verificación de Integridad</td>
+                    <td>Verificación de la integridad del archivo mediante HMAC-SHA256 y AuthTag de Poly1305.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Decisión</td>
+                    <td>¿Coinciden el Hash calculado y la etiqueta de autenticación (AuthTag)?</td>
+                </tr>
+                <tr>
+                    <td>7a</td>
+                    <td>Error de Integridad</td>
+                    <td>Se detiene el proceso y se emite alerta de corrupción o alteración del archivo.</td>
+                </tr>
+                <tr>
+                    <td>7b</td>
+                    <td>Éxito de Descifrado</td>
+                    <td>Descifrado final del contenido con ChaCha20 en el navegador/aplicativo del cliente.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Presentación</td>
+                    <td>El archivo es presentado en texto plano al usuario autorizado de forma segura.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Principios de Zero-Knowledge</h3>
+    <div class="card-grid three-col">
+        <article class="card">
+            <h3>Descifrado Local</h3>
+            <p>Todo descifrado ocurre en el dispositivo del cliente, nunca en el servidor.</p>
+        </article>
+        <article class="card">
+            <h3>Privacidad Total</h3>
+            <p>El servidor no almacena ni puede acceder a contenido en texto plano jamás.</p>
+        </article>
+        <article class="card">
+            <h3>Integridad Verificada</h3>
+            <p>Validación criptográfica garantiza que el contenido no ha sido alterado.</p>
+        </article>
+    </div>
+    <figure class="diagram-block" id="diagrama-proceso3">
+        <img src="/images/DiagramaFlujoProceso3.png"
+             alt="Diagrama de Flujo — Descifrado en el Cliente (Zero-Knowledge)"
+             class="diagram-img"
+             onerror="this.closest('figure').classList.add('no-img')" />
+        <figcaption>
+            Diagrama de Flujo — Proceso 3: Descifrado en el Cliente (Zero-Knowledge)
+            <br /><span class="diagram-path">wwwroot/images/DiagramaFlujoProceso3.png</span>
+        </figcaption>
+    </figure>
+</section>
+
+<section class="panel">
+    <h2>Diagrama de Flujo Integrado</h2>
+    <p>
+        Los tres procesos trabajan en conjunto para proporcionar una solución completa de transferencia segura:
+    </p>
+    <div class="card-grid">
+        <article class="card">
+            <h3>Fase 1: Emisor</h3>
+            <p><strong>Proceso de Cifrado:</strong> Archivo → Chunking → Cifrado (ChaCha20) → Protección de Llaves (RSA) → Almacenamiento Seguro</p>
+        </article>
+        <article class="card">
+            <h3>Fase 2: Autorización</h3>
+            <p><strong>Gestión de Permisos:</strong> Validación de acceso → Token JWT → Verificación de rol → Generación de Paquete de Llaves</p>
+        </article>
+        <article class="card">
+            <h3>Fase 3: Receptor</h3>
+            <p><strong>Descifrado Local:</strong> Descarga cifrada → Autenticación → Descifrado KEK (RSA) → Descifrado contenido (ChaCha20) → Verificación de Integridad</p>
+        </article>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar Documentación Completa</h2>
+    <p>Para más detalles técnicos sobre los procesos, consulta el documento de diagramas de procesos:</p>
+    <a class="doc-link" href="/pdfs/DiagramaProcesos-Equipo3-7CV4.pdf" target="_blank">
+        📄 Descargar Diagramas de Procesos Detallados
+    </a>
+</section>

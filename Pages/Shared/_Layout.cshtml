@@ -1,0 +1,126 @@
+﻿@{
+    var currentPage = (ViewContext.RouteData.Values["page"] as string) ?? string.Empty;
+    bool IsActive(string page) => string.Equals(currentPage, page, StringComparison.OrdinalIgnoreCase);
+
+    var navGroups = new[]
+    {
+        new { Label = "Estrategia", Pages = new[] {
+            ("/Index",               "Portada"),
+            ("/Indice",              "Indice"),
+            ("/Introduccion",        "Introduccion"),
+            ("/Objetivo",            "Objetivo"),
+            ("/MisionVisionValores", "Mision, Vision y Valores"),
+        }},
+        new { Label = "Gobierno TI", Pages = new[] {
+            ("/MetasCorporativas",  "Metas de Negocio"),
+            ("/MetasTI",            "Metas de TI"),
+            ("/CascadaMetas",       "Cascada de Metas"),
+            ("/MapaEstrategico",    "Mapa Estrategico"),
+        }},
+        new { Label = "Servicio", Pages = new[] {
+            ("/DescripcionServicio",  "Descripcion"),
+            ("/CedulaServicio",       "Cedula"),
+            ("/ArquitecturaServicio", "Arquitectura"),
+            ("/ProcesosCriticos",     "Procesos Criticos"),
+        }},
+        new { Label = "Negocio", Pages = new[] {
+            ("/Factibilidad", "Factibilidad"),
+            ("/CasoNegocio",  "Caso de Negocio"),
+        }},
+        new { Label = "Riesgos BIA", Pages = new[] {
+            ("/InventarioActivos", "Inventario de Activos"),
+            ("/MatrizRiesgos",     "Matriz de Riesgos"),
+            ("/BIATactico",        "BIA Tactico"),
+            ("/BIAOperacional",    "BIA Operacional"),
+            ("/PlanContinuidad",   "Plan de Continuidad"),
+        }},
+    };
+
+    string activeGroup = "";
+    foreach (var g in navGroups)
+        foreach (var (p, _) in g.Pages)
+            if (IsActive(p)) activeGroup = g.Label;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TAC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProyectoFinal.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- TOP HEADER -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-brand">
+            <span class="topbar-logo">TAC</span>
+            <span class="topbar-tagline">Transferencia de Archivos Cifrados</span>
+        </div>
+        <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- HORIZONTAL GROUP TABS -->
+    <nav class="group-tabs" aria-label="Categorias">
+        @foreach (var g in navGroups)
+        {
+            <button class="group-tab @(activeGroup == g.Label ? "gt-active" : "")"
+                    data-group="@g.Label" type="button">@g.Label</button>
+        }
+    </nav>
+
+    <!-- SUBPAGE RAIL (shown per active group) -->
+    @foreach (var g in navGroups)
+    {
+        <nav class="page-rail @(activeGroup == g.Label ? "rail-open" : "")"
+             data-rail="@g.Label" aria-label="@g.Label">
+            @foreach (var (pagePath, label) in g.Pages)
+            {
+                <a asp-page="@pagePath"
+                   class="rail-link @(IsActive(pagePath) ? "rl-active" : "")">@label</a>
+            }
+        </nav>
+    }
+
+    <!-- MAIN CONTENT -->
+    <main class="content" id="mainContent">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <span>Servicios Tecnologicos Empresariales SA. de C.V.</span>
+        <span class="footer-sep">&middot;</span>
+        <span>Modelo de claves efimeras &middot; 2026</span>
+        <span class="footer-sep">&middot;</span>
+        <span>IPN ESCOM &middot; 7CV4 &middot; Equipo 3</span>
+    </footer>
+
+    <!-- MOBILE DRAWER -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Menu movil">
+        <div class="drawer-header">
+            <span class="topbar-logo">TAC</span>
+            <button class="drawer-close" id="drawerClose" aria-label="Cerrar">&#x2715;</button>
+        </div>
+        @foreach (var g in navGroups)
+        {
+            <div class="drawer-group">
+                <p class="drawer-group-label">@g.Label</p>
+                @foreach (var (pagePath, label) in g.Pages)
+                {
+                    <a asp-page="@pagePath"
+                       class="drawer-link @(IsActive(pagePath) ? "dl-active" : "")">@label</a>
+                }
+            </div>
+        }
+    </nav>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

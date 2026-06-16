@@ -1,0 +1,38 @@
+@page
+@{
+    ViewData["Title"] = "Plan de Continuidad - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Plan de Continuidad del Negocio (BCP)</h2>
+    <p>Protocolos para garantizar disponibilidad, integridad y confidencialidad ante incidentes que afecten la transferencia cifrada de archivos.</p>
+
+    <h3>Escenarios y Roles</h3>
+    <div class="card-grid four-col">
+        <article class="card"><h3>Responsable de Seguridad</h3><p>Activa el plan y autoriza la contención.</p></article>
+        <article class="card"><h3>Administrador</h3><p>Revoca permisos y suspende sesiones comprometidas.</p></article>
+        <article class="card"><h3>Soporte Técnico</h3><p>Restaura disponibilidad y valida integridad.</p></article>
+        <article class="card"><h3>Auditoría</h3><p>Documenta incidentes, accesos y evidencias.</p></article>
+    </div>
+
+    <h3>Métricas de Recuperación (RTO/RPO)</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Proceso Crítico</th><th>Prioridad</th><th>RTO</th><th>RPO</th></tr></thead>
+            <tbody>
+                <tr><td>Autenticación y sesión</td><td>Crítico</td><td>30 minutos</td><td>0</td></tr>
+                <tr><td>Distribución de claves</td><td>Crítico</td><td>1 hora</td><td>0</td></tr>
+                <tr><td>Verificación de integridad</td><td>Alto</td><td>1 hora</td><td>15 minutos</td></tr>
+                <tr><td>Descarga autorizada</td><td>Alto</td><td>2 horas</td><td>15 minutos</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Estrategias de contingencia</h3>
+    <ul class="bullet-list">
+        <li><strong>Falla de clave:</strong> regeneración controlada y revocación de la sesión afectada.</li>
+        <li><strong>Integridad comprometida:</strong> bloqueo de descargas y revalidación del archivo.</li>
+        <li><strong>Caída del servicio:</strong> restauración desde almacenamiento seguro y bitácoras verificadas.</li>
+    </ul>
+    <a class="doc-link" href="/pdfs/Plan_de_continuidad.pdf" target="_blank" rel="noopener">Descargar Plan de Continuidad</a>
+</section>

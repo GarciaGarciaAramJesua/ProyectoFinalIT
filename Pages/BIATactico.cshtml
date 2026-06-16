@@ -1,0 +1,386 @@
+@page
+@{
+    ViewData["Title"] = "BIA Táctico - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>BIA's Tácticos — Análisis de Impacto al Negocio</h2>
+
+    <h3>1. Introducción</h3>
+    <p>
+        El Análisis de Impacto al Negocio (BIA, por sus siglas en inglés) a nivel táctico
+        constituye una herramienta fundamental para identificar, evaluar y priorizar la resiliencia
+        de los procesos estratégicos que sostienen la continuidad de los servicios de TI. De
+        conformidad con las directrices internacionales de la norma ISO 22301:2012 (Sistemas de
+        Gestión de la Continuidad del Negocio), este análisis no se limita a la operación técnica
+        del día a día, sino que se enfoca en los pilares tácticos que aseguran el cumplimiento de
+        los objetivos institucionales, la protección de los activos y la mitigación de riesgos críticos.
+    </p>
+    <p>
+        Para el servicio de Transferencia de Archivos Cifrados (ID del Servicio: TAC-355415), el
+        BIA táctico se vuelve indispensable debido a la naturaleza crítica de las funciones que
+        integra: el cifrado de extremo a extremo utilizando el algoritmo ChaCha20-Poly1305, la
+        gestión y gobernanza de llaves criptográficas (KMS) alineada a COBIT 2019, y la entrega
+        de información bajo un modelo de Conocimiento Cero (Zero-Knowledge). Una interrupción
+        prolongada en cualquiera de estos subprocesos clave no solo paralizaría el flujo seguro de
+        datos institucionales entre emisores y receptores en la red local (LAN), sino que expondría
+        a la organización a brechas de seguridad catastróficas, pérdida inaceptable de la integridad
+        de los datos, incumplimientos regulatorios de privacidad y daños severos a la reputación y
+        confianza del servicio.
+    </p>
+
+    <h3>2. Objetivo</h3>
+    <p>
+        El objetivo del presente documento es analizar y determinar el impacto táctico, operativo y
+        económico que generaría una interrupción en los procesos de Cifrado y resguardo de activos
+        (TAC_PROC_01), Gestión de permisos y llaves (TAC_PROC_02) y Descifrado y entrega
+        (Zero-Knowledge) (TAC_PROC_03) dentro del ecosistema del servicio de Transferencia de
+        Archivos Cifrados. A través de este análisis, se busca identificar los recursos de
+        infraestructura y personal críticos, cuantificar los tiempos límite de tolerancia mediante el
+        establecimiento del Máximo Periodo de Interrupción Tolerable (MTPoD) y el Tiempo de
+        Recuperación Objetivo (RTO), y definir el Objetivo Mínimo de Continuidad del Negocio (MBCO).
+    </p>
+</section>
+
+<section class="panel">
+    <h2>3. Procedimiento 1 — Cifrado y Resguardo de Activos (TAC_PROC_01)</h2>
+
+    <h3>3.1 Identificación del proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>Proceso</strong></td><td>Cifrado y resguardo de activos</td></tr>
+                <tr><td><strong>Grupo de Productos y Servicios relacionados</strong></td><td>Transferencia de Archivos Cifrados (ID: TAC-355415)</td></tr>
+                <tr><td><strong>Responsable (Área/Función)</strong></td><td>Especialista en Ciberseguridad / Desarrollo Backend</td></tr>
+                <tr><td><strong>Nombre del responsable</strong></td><td>García García Aram Jesua</td></tr>
+                <tr><td><strong>Fecha de llenado</strong></td><td>02 de junio de 2026</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3.2 Tipo y nivel de impacto al negocio por la interrupción en el proceso</h3>
+    <p><em>Nota: Requisito de ISO 22301:2012: 8.2.2.b) Valorar los impactos a través del tiempo por no ejecutar estas actividades.</em></p>
+    <p>No aplica (<strong>N</strong>) Bajo (<strong>B</strong>) Medio (<strong>M</strong>) Alto (<strong>A</strong>)</p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Impacto</th>
+                    <th>0-5 Min.</th><th>5-15 Min.</th><th>15-30 Min.</th><th>30-60 Min.</th>
+                    <th>1-2 Horas</th><th>2-5 Horas</th><th>5-12 Horas</th><th>12-24 Horas</th>
+                    <th>1-2 Días</th><th>2-5 Días</th><th>&gt;5 Días</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Pérdida económica</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Incumplimiento legal y/o regulatorio</td><td>B</td><td>B</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Daño a la reputación / Imagen</td><td>B</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Afectación del servicio al cliente</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+                <tr><td>Pérdida de calidad</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de productividad</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de control</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Daño a la salud y/o bienestar de personas</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+                <tr><td>Daño medio-ambiental</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3.3 Máximo Periodo de Interrupción Tolerable (MTPoD/MAO)</h3>
+    <p>Tiempo seleccionado: <strong>&lt;12 Horas</strong></p>
+
+    <h3>3.4 Tiempo de Recuperación Objetivo (RTO)</h3>
+    <p>Tiempo seleccionado: <strong>&lt;12 Horas</strong></p>
+
+    <h3>3.5 Objetivo de Continuidad del Negocio Mínimo (MBCO)</h3>
+    <div class="panel" style="border-left: 3px solid var(--accent); padding-left: 1rem;">
+        <p>
+            El objetivo mínimo de continuidad es asegurar la persistencia y disponibilidad de la
+            infraestructura local de almacenamiento de llaves y el aislamiento del Servidor de Datos.
+            Ante una contingencia, el sistema debe garantizar que el resguardo y aislamiento de los
+            volúmenes de datos previamente cifrados con ChaCha20-Poly1305 se mantenga inmutable,
+            permitiendo de manera local el monitoreo manual de accesos de emergencia y la activación
+            inmediata del almacenamiento de respaldo externo en la nube antes de que se cumpla el
+            límite de 8 horas establecido en el SLA para la Administración de Servidores.
+        </p>
+    </div>
+
+    <h3>3.6 Actividades que soportan la operación del proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Actividades que soportan el proceso</th><th>ID</th></tr></thead>
+            <tbody>
+                <tr><td>Segmentación y lectura de archivos en fragmentos de memoria (80KB)</td><td>1.1</td></tr>
+                <tr><td>Generación de claves efímeras KEK (32 bytes) y vectores Nonce (96 bits)</td><td>1.2</td></tr>
+                <tr><td>Cifrado de datos en tránsito y reposo mediante ChaCha20-Poly1305</td><td>1.3</td></tr>
+                <tr><td>Encriptación asimétrica de la KEK con el estándar RSA-OAEP del servidor</td><td>1.4</td></tr>
+                <tr><td>Firmado digital y cálculo de integridad con funciones hash SHA-256 y HMAC</td><td>1.5</td></tr>
+                <tr><td>Escritura indexada de metadatos criptográficos en la base de datos SQL Server</td><td>1.6</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3.7 Opciones actuales de continuidad operacional</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Actividad</th><th>Estrategia(s) / mecanismo(s) de continuidad operacional actual</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Cifrado de datos</td><td>Uso de bibliotecas criptográficas locales (pycryptodome / cryptography) ejecutadas en estaciones locales de contingencia offline</td></tr>
+                <tr><td>2</td><td>Resguardo de secretos</td><td>Copias de seguridad locales automatizadas con marca de tiempo del par de claves RSA-4096 del servidor en directorios aislados.</td></tr>
+                <tr><td>3</td><td>Almacenamiento de archivos</td><td>Replicación manual programada de la base de datos "ApplicationDBContext" hacia dispositivos de almacenamiento redundante externo.</td></tr>
+                <tr><td>4</td><td>Monitoreo de integridad</td><td>Ejecución local de scripts alternos en Python para auditorías y verificación de tablas hash sin dependencia de la red centralizada.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3.8 Interdependencia con otros procesos y/o actividades</h3>
+    <p><strong>Recibe información de:</strong></p>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Proceso / actividad</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Entrada de datos origen y solicitudes de resguardo por parte del Administrador/Dueño del servicio.</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>Envía información a:</strong></p>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Proceso / actividad</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Gestión de permisos y llaves (provee los metadatos y llaves cifradas legibles únicamente bajo validación de roles).</td></tr>
+                <tr><td>2</td><td>Descifrado y entrega (envía el bloque de datos íntegro empaquetado para su procesamiento Zero-Knowledge en el cliente receptor)</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>4. Procedimiento 2 — Gestión de Permisos y Llaves (TAC_PROC_02)</h2>
+
+    <h3>4.1 Identificación del proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>Proceso</strong></td><td>Gestión de permisos y llaves.</td></tr>
+                <tr><td><strong>Grupo de Productos y Servicios relacionados</strong></td><td>Transferencia de Archivos Cifrados (ID: TAC-355415)</td></tr>
+                <tr><td><strong>Responsable (Área/Función)</strong></td><td>Especialista en Ciberseguridad / Desarrollo Backend</td></tr>
+                <tr><td><strong>Nombre del responsable</strong></td><td>Aram Jesua García García / Ricardo Zavala Camacho</td></tr>
+                <tr><td><strong>Fecha de llenado</strong></td><td>02 de junio de 2026</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>4.2 Tipo y nivel de impacto al negocio por la interrupción en el proceso</h3>
+    <p><em>N: No aplica | B: Bajo | M: Medio | A: Alto</em></p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Impacto</th>
+                    <th>0-5 Min.</th><th>5-15 Min.</th><th>15-30 Min.</th><th>30-60 Min.</th>
+                    <th>1-2 Horas</th><th>2-5 Horas</th><th>5-12 Horas</th><th>12-24 Horas</th>
+                    <th>1-2 Días</th><th>2-5 Días</th><th>&gt;5 Días</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Pérdida económica</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Incumplimiento legal y/o regulatorio</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Daño a la reputación / Imagen</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Afectación del servicio al cliente</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de calidad</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de productividad</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de control</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Daño a la salud y/o bienestar de personas</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+                <tr><td>Daño medio-ambiental</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>4.3 Máximo Periodo de Interrupción Tolerable (MTPoD/MAO)</h3>
+    <p>Tiempo seleccionado: <strong>&lt;5 Horas</strong></p>
+
+    <h3>4.4 Tiempo de Recuperación Objetivo (RTO)</h3>
+    <p>Tiempo seleccionado: <strong>&lt;2 Horas</strong></p>
+
+    <h3>4.5 Objetivo de Continuidad del Negocio Mínimo (MBCO)</h3>
+    <div class="panel" style="border-left: 3px solid var(--accent); padding-left: 1rem;">
+        <p>
+            El objetivo mínimo de continuidad es asegurar que el motor de validación de políticas de
+            acceso y la administración de llaves maestras (KEK) se mantengan disponibles a través de
+            un nodo secundario de contingencia. Ante una caída del backend web principal, el sistema
+            debe permitir la verificación offline o distribuida de los tokens de identidad (JWT) y
+            mantener la lectura de los permisos históricos asignados por el emisor en la base de datos
+            distribuida, permitiendo la generación e intercambio seguro de paquetes de llaves para el
+            receptor con una capacidad degradada pero segura, previniendo fallos de denegación de
+            acceso injustificado.
+        </p>
+    </div>
+
+    <h3>4.6 Actividades que soportan la operación del proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Actividades que soportan el proceso</th><th>ID</th></tr></thead>
+            <tbody>
+                <tr><td>Recepción de solicitudes de acceso a archivos específicos por parte de los Usuarios Consumidores.</td><td>2.1</td></tr>
+                <tr><td>Consulta en base de datos para verificar la existencia de un permiso activo otorgado por el emisor.</td><td>2.2</td></tr>
+                <tr><td>Ejecución del servicio de mensajería síncrona/asíncrona para notificar al emisor sobre solicitudes pendientes de autorización.</td><td>2.3</td></tr>
+                <tr><td>Validación algorítmica de marcas de tiempo y fechas de expiración temporales del permiso del archivo.</td><td>2.4</td></tr>
+                <tr><td>Descodificación y verificación criptográfica de la firma del Token JWT para validar los roles de usuario asignados.</td><td>2.5</td></tr>
+                <tr><td>Cómputo y empaquetamiento seguro de las claves criptográficas destinadas al receptor autorizado.</td><td>2.6</td></tr>
+                <tr><td>Habilitación e invocación de la interfaz web dinámica para autorizar la descarga/visualización del contenido.</td><td>2.7</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>4.7 Opciones actuales de continuidad operacional</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Actividad</th><th>Estrategia(s) / mecanismo(s) de continuidad operacional actual</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Validación de Roles (JWT)</td><td>Uso de llaves de respaldo locales para la verificación de firmas de tokens en servidores proxy alternos, previniendo caídas del proveedor de identidad centralizado.</td></tr>
+                <tr><td>2</td><td>Consulta de Permisos</td><td>Réplica de solo lectura en caché local de la tabla de control de acceso basada en SQL Server Express para autorizar accesos pre-aprobados durante interrupciones de red.</td></tr>
+                <tr><td>3</td><td>Notificaciones de Solicitud</td><td>Enrutamiento de alertas mediante un canal secundario basado en logs locales del sistema cuando el módulo principal de notificaciones web se encuentra fuera de servicio.</td></tr>
+                <tr><td>4</td><td>Generación de Paquetes KEK</td><td>Ejecución de scripts independientes en Python ejecutados del lado del servidor criptográfico aislado para procesar las llaves maestras (wrapping/unwrapping) manualmente.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>4.8 Interdependencia con otros procesos y/o actividades</h3>
+    <p><strong>Recibe información de:</strong></p>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Proceso / actividad</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Proceso 1 (TAC_PROC_01): Cifrado y resguardo de activos</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>Envía información a:</strong></p>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Proceso / actividad</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Proceso 3 (TAC_PROC_03): Descifrado y entrega (Zero-Knowledge)</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>5. Procedimiento 3 — Descifrado y Entrega (Zero-Knowledge) (TAC_PROC_03)</h2>
+
+    <h3>5.1 Identificación del proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>Proceso</strong></td><td>Descifrado y Entrega (Zero-Knowledge)</td></tr>
+                <tr><td><strong>Grupo de Productos y Servicios relacionados</strong></td><td>Transferencia de Archivos Cifrados (TAC-355415)</td></tr>
+                <tr><td><strong>Responsable (Área/Función)</strong></td><td>Desarrollo Backend / Especialista en Ciberseguridad e Ingeniería de Redes</td></tr>
+                <tr><td><strong>Nombre del responsable</strong></td><td>Erick Damián Rodríguez Martínez / Ricardo Zavala Camacho</td></tr>
+                <tr><td><strong>Fecha de llenado</strong></td><td>02 de junio de 2026</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>5.2 Tipo y nivel de impacto al negocio por la interrupción en el proceso</h3>
+    <p><em>No aplica (N) Bajo (B) Medio (M) Alto (A)</em></p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Impacto</th>
+                    <th>0-5 Min.</th><th>5-15 Min.</th><th>15-30 Min.</th><th>30-60 Min.</th>
+                    <th>1-2 Horas</th><th>2-5 Horas</th><th>5-12 Horas</th><th>12-24 Horas</th>
+                    <th>1-2 Días</th><th>2-5 Días</th><th>&gt;5 Días</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Pérdida económica</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Incumplimiento legal y/o regulatorio</td><td>B</td><td>B</td><td>B</td><td>B</td><td>B</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Daño a la reputación / Imagen</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Afectación del servicio al cliente</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de calidad</td><td>B</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de productividad</td><td>B</td><td>B</td><td>M</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Pérdida de control</td><td>B</td><td>B</td><td>M</td><td>M</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td></tr>
+                <tr><td>Daño a la salud y/o bienestar de personas</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+                <tr><td>Daño medio-ambiental</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>5.3 Máximo Periodo de Interrupción Tolerable (MTPoD/MAO)</h3>
+    <p>Tiempo seleccionado: <strong>&lt;12 Horas</strong></p>
+
+    <h3>5.4 Tiempo de Recuperación Objetivo (RTO)</h3>
+    <p>Tiempo seleccionado: <strong>X (8 Horas)</strong></p>
+
+    <h3>5.5 Objetivo de Continuidad del Negocio Mínimo (MBCO)</h3>
+    <div class="panel" style="border-left: 3px solid var(--accent); padding-left: 1rem;">
+        <p>
+            El objetivo de continuidad del negocio mínimo es garantizar que el receptor o usuario
+            consumidor pueda efectuar la descarga de los activos digitales críticos incluso durante
+            contingencias en la aplicación web, realizando el descifrado del paquete utilizando
+            herramientas manuales o protocolos alternativos. Se debe mantener la integridad de la
+            base de datos criptográfica, asegurando que el mecanismo de respaldo de llaves y el
+            entorno de ejecución permitan la restauración funcional de la visualización para el
+            receptor. El tiempo máximo de reanudación permitido antes de violar el SLA crítico y
+            afectar irreversiblemente la disponibilidad de aplicaciones en el negocio es de 8 horas.
+        </p>
+    </div>
+
+    <h3>5.6 Actividades que soportan la operación del proceso</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Actividades que soportan el proceso</th><th>ID</th></tr></thead>
+            <tbody>
+                <tr><td>Descarga de archivo cifrado iniciada por el receptor y envío por parte del servidor junto con KEK protegida por RSA</td><td>1.1</td></tr>
+                <tr><td>Autenticación de sesión del usuario para la obtención de la llave privada RSA</td><td>1.2</td></tr>
+                <tr><td>Descifrado asimétrico de la KEK (Key Encryption Key) en el entorno aislado del cliente</td><td>1.3</td></tr>
+                <tr><td>Verificación cruzada de integridad confirmando que el Hash y AuthTag coinciden usando HMAC-SHA256</td><td>1.4</td></tr>
+                <tr><td>Descifrado final utilizando ChaCha20 y despliegue del contenido en texto plano para el usuario</td><td>1.5</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>5.7 Opciones actuales de continuidad operacional</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Actividad</th><th>Estrategia(s) / mecanismo(s) de continuidad operacional actual</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Entrega / Descarga de archivo</td><td>Compatibilidad y uso alterno del protocolo SCP para transferencia básica en dispositivos</td></tr>
+                <tr><td>2</td><td>Verificación de firmas / Hash</td><td>Subservicio secundario que entrega logs analizados con Python y validación de firmas SHA-256 de forma manual</td></tr>
+                <tr><td>3</td><td>Respaldo de Base de Datos y Logs</td><td>Restauración y consulta local hacia el respaldo en SQLite o PostgreSQL mediante consultas directas</td></tr>
+                <tr><td>4</td><td>Recuperación de claves RSA en Servidor</td><td>Invocación manual automática a copias de seguridad de llaves RSA con marca de tiempo en el directorio</td></tr>
+                <tr><td>5</td><td>Autenticación temporal y roles</td><td>Análisis dinámico de excepciones y cruce de roles manejado administrativamente desde SQL Server Express</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>5.8 Interdependencia con otros procesos y/o actividades</h3>
+    <p><strong>Recibe información de:</strong></p>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Proceso / actividad</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Proceso 1 (TAC_PROC_01): Cifrado y resguardo de activos</td></tr>
+                <tr><td>2</td><td>Proceso 2 (TAC_PROC_02): Gestión de permisos y llaves</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>Envía información a:</strong></p>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Proceso / actividad</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Usuario Consumidor (Visualización y consumo del contenido)</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar BIA Táctico</h2>
+    <a class="doc-link" href="/pdfs/BIAsTacticos-Equipo3-7CV4.pdf" target="_blank">
+        📄 Documento Completo - BIAs Tácticos
+    </a>
+</section>

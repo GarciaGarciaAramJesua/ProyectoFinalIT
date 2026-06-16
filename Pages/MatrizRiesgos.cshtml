@@ -1,0 +1,460 @@
+@page
+@{
+    ViewData["Title"] = "Matriz de Riesgos - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Análisis de Riesgos — Inventario de Activos con Valoración</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">ACTIVO</th>
+                    <th colspan="5">VALORACIÓN</th>
+                </tr>
+                <tr>
+                    <th>ID_PROCESO</th>
+                    <th>ID_ACTIVO</th>
+                    <th>ACTIVO DE INFORMACIÓN</th>
+                    <th>C</th>
+                    <th>I</th>
+                    <th>D</th>
+                    <th>TOTAL</th>
+                    <th>VALOR 1</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3">TAC_PROC_01</td>
+                    <td>ACT_HW_01</td><td>Servidor de Datos</td><td>1</td><td>5</td><td>5</td><td>11</td><td>Alto</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_01</td><td>Entorno de Ejecución Python 3.12+</td><td>3</td><td>5</td><td>3</td><td>11</td><td>Alto</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_01</td><td>Almacenamiento en la Nube</td><td>1</td><td>1</td><td>5</td><td>7</td><td>Medio</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">TAC_PROC_02</td>
+                    <td>ACT_HW_02</td><td>Firewall Perimetral</td><td>1</td><td>5</td><td>2</td><td>8</td><td>Medio</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_02</td><td>Base de Datos (SQLite/PostgreSQL)</td><td>5</td><td>5</td><td>2</td><td>12</td><td>Alto</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_03</td><td>Servicio de Internet Dedicado</td><td>1</td><td>5</td><td>1</td><td>7</td><td>Medio</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">TAC_PROC_03</td>
+                    <td>ACT_HW_03</td><td>Equipos de Cómputo (x6)</td><td>3</td><td>5</td><td>3</td><td>11</td><td>Alto</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_04</td><td>Navegador Web o Cliente</td><td>5</td><td>2</td><td>1</td><td>8</td><td>Medio</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_02</td><td>Certificado SSL/TLS de la CA</td><td>5</td><td>5</td><td>4</td><td>14</td><td>Crítico</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Vulnerabilidades y Amenazas Identificadas</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>VULNERABILIDADES</th>
+                    <th>AMENAZAS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Falta de automatización o desconocimiento en el manejo manual de los directorios de resguardo de llaves en Linux.</td>
+                    <td>Error de configuración operativa.</td>
+                </tr>
+                <tr>
+                    <td>Falta de validación de firmas y hashes (checksum) en el archivo de requerimientos (requirements.txt).</td>
+                    <td>Código malicioso incrustado en actualizaciones de software.</td>
+                </tr>
+                <tr>
+                    <td>Dependencia absoluta de un único proveedor en la nube para alojar las copias de seguridad de los logs.</td>
+                    <td>Interrupción o caída de infraestructura externa.</td>
+                </tr>
+                <tr>
+                    <td>Reglas de acceso (ACLs) mal estructuradas o permisivas en la configuración de red.</td>
+                    <td>Intrusión y ataque de red.</td>
+                </tr>
+                <tr>
+                    <td>Implementación débil en la validación de firmas dentro del Token JWT al realizar el cruce dinámico de permisos.</td>
+                    <td>Modificación no autorizada de datos.</td>
+                </tr>
+                <tr>
+                    <td>Ausencia de un enlace de red redundante (Failover) para soportar caídas del ISP primario.</td>
+                    <td>Corte total del servicio de telecomunicaciones.</td>
+                </tr>
+                <tr>
+                    <td>Carencia de cifrado de disco duro completo a nivel de sistema operativo en las terminales físicas.</td>
+                    <td>Robo o extravío de dispositivo físico.</td>
+                </tr>
+                <tr>
+                    <td>Aislamiento deficiente de la memoria RAM en el entorno de ejecución del cliente.</td>
+                    <td>Exfiltración de información y espionaje (Malware).</td>
+                </tr>
+                <tr>
+                    <td>Falta de monitoreo y alertas automatizadas para el control del ciclo de vida y renovación.</td>
+                    <td>Expiración del certificado de seguridad.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Eventos de Amenaza y Controles</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>EVENTO DE AMENAZA (RIESGO)</th>
+                    <th>CONTROLES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Borrado accidental o sobreescritura de la llave privada maestra del servidor, dejando archivos cifrados irrecuperables.</td>
+                    <td>Borrado accidental o sobreescritura de la llave privada maestra del servidor, dejando archivos cifrados irrecuperables.</td>
+                </tr>
+                <tr>
+                    <td>Un atacante compromete el repositorio público (PyPI) y el servidor descarga una versión manipulada de la librería.</td>
+                    <td>Fijar versiones exactas de las librerías (pip freeze) y descargar dependencias solo de fuentes confiables.</td>
+                </tr>
+                <tr>
+                    <td>Inaccesibilidad temporal al repositorio de respaldos, frenando las auditorías de integridad.</td>
+                    <td>Configurar un almacenamiento local redundante (buffer) en el nodo central.</td>
+                </tr>
+                <tr>
+                    <td>Explotación de puertos abiertos y saturación del puerto 65432 (DDoS).</td>
+                    <td>Implementar el principio de menor privilegio en el firewall y ejecutar auditorías de escaneo.</td>
+                </tr>
+                <tr>
+                    <td>Escalada de privilegios que permite a un usuario alterar la tabla de permisos en la base de datos.</td>
+                    <td>Reforzar la firma del JWT con HMAC-SHA256 y rotar secretos de autenticación periódicamente.</td>
+                </tr>
+                <tr>
+                    <td>Daño físico en la fibra óptica que desconecta el Servidor de Datos e impide la validación de Tokens JWT.</td>
+                    <td>Contratar un enlace de internet de respaldo secundario y configurar balanceo (SD-WAN).</td>
+                </tr>
+                <tr>
+                    <td>El robo de un equipo expone código fuente, credenciales en caché y metadatos sensibles.</td>
+                    <td>Implementar cifrado de disco (BitLocker o LUKS) y contar con software MDM para borrado remoto.</td>
+                </tr>
+                <tr>
+                    <td>Extracción de la llave KEK en claro o captura de pantalla por un keylogger instalado en el equipo.</td>
+                    <td>Sanitización estricta de las variables en la memoria del navegador y requerir software EDR.</td>
+                </tr>
+                <tr>
+                    <td>El certificado caduca, provocando el rechazo de conexiones o un ataque Man-in-the-Middle.</td>
+                    <td>Configurar un sistema de monitoreo automático de alertas a 30 y 15 días e implementar HSTS.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Análisis de Vulnerabilidades</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Vulnerabilidades</th>
+                    <th>Severidad</th>
+                    <th>Exposición</th>
+                    <th>Valor3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Falta de automatización o desconocimiento en el manejo manual de los directorios de resguardo de llaves en Linux.</td>
+                    <td>3</td><td>2</td><td>4</td>
+                </tr>
+                <tr>
+                    <td>Falta de validación de firmas y hashes (checksum) en el archivo de requerimientos (requirements.txt).</td>
+                    <td>3</td><td>2</td><td>4</td>
+                </tr>
+                <tr>
+                    <td>Dependencia absoluta de un único proveedor en la nube para alojar las copias de seguridad de los logs.</td>
+                    <td>2</td><td>2</td><td>3</td>
+                </tr>
+                <tr>
+                    <td>Reglas de acceso (ACLs) mal estructuradas o permisivas en la configuración de red.</td>
+                    <td>3</td><td>3</td><td>5</td>
+                </tr>
+                <tr>
+                    <td>Implementación débil en la validación de firmas dentro del Token JWT al realizar el cruce dinámico de permisos.</td>
+                    <td>3</td><td>2</td><td>4</td>
+                </tr>
+                <tr>
+                    <td>Ausencia de un enlace de red redundante (Failover) para soportar caídas del ISP primario.</td>
+                    <td>2</td><td>3</td><td>4</td>
+                </tr>
+                <tr>
+                    <td>Carencia de cifrado de disco duro completo a nivel de sistema operativo en las terminales físicas.</td>
+                    <td>2</td><td>2</td><td>3</td>
+                </tr>
+                <tr>
+                    <td>Aislamiento deficiente de la memoria RAM en el entorno de ejecución del cliente.</td>
+                    <td>3</td><td>3</td><td>5</td>
+                </tr>
+                <tr>
+                    <td>Falta de monitoreo y alertas automatizadas para el control del ciclo de vida y renovación.</td>
+                    <td>3</td><td>2</td><td>4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Análisis de Amenazas</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Amenazas</th>
+                    <th>Eventos de amenaza</th>
+                    <th>Capacidad</th>
+                    <th>Motivación</th>
+                    <th>Valor4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Error de configuración operativa.</td>
+                    <td>Borrado accidental o sobreescritura de la llave privada maestra del servidor, dejando archivos cifrados irrecuperables.</td>
+                    <td>2</td><td>1</td><td>2</td>
+                </tr>
+                <tr>
+                    <td>Código malicioso incrustado en actualizaciones de software.</td>
+                    <td>Un atacante compromete el repositorio público (PyPI) y el servidor descarga una versión manipulada de la librería.</td>
+                    <td>3</td><td>3</td><td>5</td>
+                </tr>
+                <tr>
+                    <td>Interrupción o caída de infraestructura externa.</td>
+                    <td>Inaccesibilidad temporal al repositorio de respaldos, frenando las auditorías de integridad.</td>
+                    <td>2</td><td>1</td><td>2</td>
+                </tr>
+                <tr>
+                    <td>Intrusión y ataque de red.</td>
+                    <td>Explotación de puertos abiertos y saturación del puerto 65432 (DDoS).</td>
+                    <td>2</td><td>3</td><td>4</td>
+                </tr>
+                <tr>
+                    <td>Modificación no autorizada de datos.</td>
+                    <td>Escalada de privilegios que permite a un usuario alterar la tabla de permisos en la base.</td>
+                    <td>2</td><td>2</td><td>3</td>
+                </tr>
+                <tr>
+                    <td>Corte total del servicio de telecomunicaciones.</td>
+                    <td>Daño físico en la fibra óptica que desconecta el Servidor de Datos e impide la validación de Tokens JWT.</td>
+                    <td>2</td><td>1</td><td>2</td>
+                </tr>
+                <tr>
+                    <td>Robo o extravío de dispositivo físico.</td>
+                    <td>El robo de un equipo expone código fuente, credenciales en caché y metadatos sensibles.</td>
+                    <td>2</td><td>2</td><td>3</td>
+                </tr>
+                <tr>
+                    <td>Exfiltración de información y espionaje (Malware).</td>
+                    <td>Extracción de la llave KEK en claro o captura de pantalla por un keylogger instalado en el equipo.</td>
+                    <td>3</td><td>3</td><td>5</td>
+                </tr>
+                <tr>
+                    <td>Expiración del certificado de seguridad.</td>
+                    <td>El certificado caduca, provocando el rechazo de conexiones o un ataque Man-in-the-Middle.</td>
+                    <td>2</td><td>1</td><td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Riesgo Total por Evento de Amenaza</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Evento de amenaza (Riesgo)</th>
+                    <th>Amenaza</th>
+                    <th>Vulnerabilidad</th>
+                    <th>Probabilidad</th>
+                    <th>Impacto</th>
+                    <th>Riesgo Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Borrado accidental o sobreescritura de la llave privada maestra del servidor.</td>
+                    <td>2</td><td>4</td><td>2 (Media)</td><td>11</td><td><strong>176</strong></td>
+                </tr>
+                <tr>
+                    <td>Un atacante compromete PyPI y el servidor descarga una librería manipulada.</td>
+                    <td>5</td><td>4</td><td>1 (Baja)</td><td>11</td><td><strong>220</strong></td>
+                </tr>
+                <tr>
+                    <td>Inaccesibilidad temporal al repositorio externo de respaldos.</td>
+                    <td>2</td><td>3</td><td>2 (Media)</td><td>7</td><td><strong>84</strong></td>
+                </tr>
+                <tr>
+                    <td>Explotación de puertos abiertos y saturación del puerto 65432 (DDoS).</td>
+                    <td>4</td><td>5</td><td>2 (Media)</td><td>8</td><td><strong>320</strong></td>
+                </tr>
+                <tr>
+                    <td>Escalada de privilegios que permite alterar la tabla de permisos en la BD.</td>
+                    <td>3</td><td>4</td><td>1 (Baja)</td><td>12</td><td><strong>144</strong></td>
+                </tr>
+                <tr>
+                    <td>Daño físico en la fibra óptica que desconecta el Servidor de Datos (Corte ISP).</td>
+                    <td>2</td><td>4</td><td>3 (Alta)</td><td>7</td><td><strong>168</strong></td>
+                </tr>
+                <tr>
+                    <td>El robo de un equipo expone código fuente, credenciales y metadatos.</td>
+                    <td>3</td><td>3</td><td>1 (Baja)</td><td>11</td><td><strong>99</strong></td>
+                </tr>
+                <tr>
+                    <td>Extracción de la llave KEK en claro o captura de pantalla por un keylogger.</td>
+                    <td>5</td><td>5</td><td>2 (Media)</td><td>8</td><td><strong>400</strong></td>
+                </tr>
+                <tr>
+                    <td>El certificado caduca, provocando el rechazo de conexiones.</td>
+                    <td>2</td><td>4</td><td>3 (Alta)</td><td>14</td><td><strong>336</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Identificación de Infraestructuras Críticas</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">ACTIVO</th>
+                    <th colspan="6">VALORACIÓN</th>
+                </tr>
+                <tr>
+                    <th>ID_PROCESO</th>
+                    <th>ID_ACTIVO</th>
+                    <th>ACTIVO DE INFORMACIÓN</th>
+                    <th>Área Geográfica</th>
+                    <th>Periodo de Afectación</th>
+                    <th>IMPACTO</th>
+                    <th>Cantidad de Infraestructuras Críticas Afectadas</th>
+                    <th>Campos Afectados</th>
+                    <th>INTERDEPENDENCIA</th>
+                    <th>CRITICIDAD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3">TAC_PROC_01</td>
+                    <td>ACT_HW_01</td><td>Servidor de Datos</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1</td><td>2</td><td>III</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_01</td><td>Entorno de Ejecución Python 3.12+</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1</td><td>2</td><td>III</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_01</td><td>Almacenamiento en la Nube</td><td>1</td><td>2</td><td>2</td><td>1</td><td>1</td><td>1</td><td>II</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">TAC_PROC_02</td>
+                    <td>ACT_HW_02</td><td>Firewall Perimetral</td><td>2</td><td>2</td><td>3</td><td>2</td><td>1</td><td>2</td><td>III</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_02</td><td>Base de Datos (SQLite/PostgreSQL)</td><td>2</td><td>1</td><td>2</td><td>1</td><td>1</td><td>1</td><td>II</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_03</td><td>Servicio de Internet Dedicado</td><td>3</td><td>2</td><td>4</td><td>3</td><td>2</td><td>4</td><td>V</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">TAC_PROC_03</td>
+                    <td>ACT_HW_03</td><td>Equipos de Cómputo (x6)</td><td>3</td><td>3</td><td>5</td><td>3</td><td>2</td><td>4</td><td>V</td>
+                </tr>
+                <tr>
+                    <td>ACT_SW_04</td><td>Navegador Web o Cliente</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>I</td>
+                </tr>
+                <tr>
+                    <td>ACT_SE_02</td><td>Certificado SSL/TLS de la CA</td><td>2</td><td>3</td><td>4</td><td>2</td><td>1</td><td>2</td><td>IV</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Infraestructuras Críticas Detectadas y Controles</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>INFRAESTRUCTURAS CRÍTICAS DETECTADAS</th>
+                    <th>GRADO DE CRITICIDAD</th>
+                    <th>CONTROLES A IMPLEMENTAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Servidor de procesamiento de datos</td>
+                    <td>III</td>
+                    <td>Redundancia y controles físicos</td>
+                </tr>
+                <tr>
+                    <td>Entorno de Ejecución Python 3.12+ (ejecución y bibliotecas)</td>
+                    <td>III</td>
+                    <td>Documentación de elementos necesarios y generación de respaldo automático de instalación</td>
+                </tr>
+                <tr>
+                    <td>Almacenamiento en la Nube para copias de seguridad</td>
+                    <td>II</td>
+                    <td>Renovación y chequeos constantes, revisión del tamaño de almacenamiento periódico</td>
+                </tr>
+                <tr>
+                    <td>Firewall Perimetral (filtrado de datos por sockets)</td>
+                    <td>III</td>
+                    <td>Control de sesiones y tokens por renovación periódica</td>
+                </tr>
+                <tr>
+                    <td>Base de Datos (SQLite/PostgreSQL) (cruce de permisos)</td>
+                    <td>II</td>
+                    <td>Respaldos periódicos, generación de bitácoras</td>
+                </tr>
+                <tr>
+                    <td>Servicio de Internet Dedicado</td>
+                    <td>V</td>
+                    <td>Servicio de respaldo, plan de recuperación inmediata de la red</td>
+                </tr>
+                <tr>
+                    <td>Equipos de Cómputo (estaciones de trabajo)</td>
+                    <td>V</td>
+                    <td>Adquisición de garantías por cada equipo y mantenimiento periódico</td>
+                </tr>
+                <tr>
+                    <td>Certificado SSL/TLS de la CA</td>
+                    <td>IV</td>
+                    <td>Renovación periódica, gestión de accesos y de su administración</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar Análisis de Riesgos</h2>
+    <a class="doc-link" href="/pdfs/AnalisisRiesgos-Equipo3-7CV4.pdf" target="_blank">
+        📄 Documento Completo - Análisis de Riesgos
+    </a>
+</section>

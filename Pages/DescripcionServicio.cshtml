@@ -1,0 +1,30 @@
+@page
+@{
+    ViewData["Title"] = "Descripción del Servicio";
+}
+
+<section class="panel">
+    <h2>Descripción del Servicio</h2>
+    <p>
+        TAC es una plataforma de transferencia de archivos cifrados destinada a organizaciones que requieren
+        máxima seguridad en el intercambio de información sensible. Soporta envío seguro de documentos, datos financieros,
+        registros médicos, información personal protegida y cualquier archivo que demande protección de clase empresarial.
+    </p>
+    <h3>Alcance</h3>
+    <ul class="bullet-list">
+        <li>Registro y autenticación de usuarios con control de sesión.</li>
+        <li>Carga de archivos con cifrado automático y almacenamiento protegido.</li>
+        <li>Gestión granular de permisos por archivo y por usuario.</li>
+        <li>Distribución de claves efímeras para descifrado controlado.</li>
+        <li>Verificación de integridad mediante SHA-256, HMAC o mecanismos equivalentes.</li>
+    </ul>
+    <div class="chip-group">
+        <span>ChaCha20-Poly1305</span>
+        <span>RSA-OAEP</span>
+        <span>AES-256</span>
+        <span>PBKDF2</span>
+        <span>HMAC</span>
+        <span>JWT</span>
+        <span>Auditoría</span>
+    </div>
+</section>

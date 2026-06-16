@@ -1,0 +1,285 @@
+@page
+@{
+    ViewData["Title"] = "BIA Operacional - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>BIA Operacional — Análisis de Impacto al Negocio</h2>
+
+    <h3>1. Introducción</h3>
+    <p>
+        El Análisis de Impacto al Negocio (BIA, por sus siglas en inglés) a nivel táctico
+        constituye una herramienta fundamental para identificar, evaluar y priorizar la resiliencia
+        de los procesos estratégicos que sostienen la continuidad de los servicios de TI. De
+        conformidad con las directrices internacionales de la norma ISO 22301:2012 (Sistemas de
+        Gestión de la Continuidad del Negocio), este análisis no se limita a la operación técnica
+        del día a día, sino que se enfoca en los pilares tácticos que aseguran el cumplimiento de
+        los objetivos institucionales, la protección de los activos y la mitigación de riesgos críticos.
+    </p>
+    <p>
+        Para el servicio de Transferencia de Archivos Cifrados (ID del Servicio: TAC-355415), el
+        BIA táctico se vuelve indispensable debido a la naturaleza crítica de las funciones que
+        integra: el cifrado de extremo a extremo utilizando el algoritmo ChaCha20-Poly1305, la
+        gestión y gobernanza de llaves criptográficas (KMS) alineada a COBIT 2019, y la entrega
+        de información bajo un modelo de Conocimiento Cero (Zero-Knowledge). Una interrupción
+        prolongada en cualquiera de estos subprocesos clave no solo paralizaría el flujo seguro de
+        datos institucionales entre emisores y receptores en la red local (LAN), sino que expondría
+        a la organización a brechas de seguridad catastróficas, pérdida inaceptable de la integridad
+        de los datos, incumplimientos regulatorios de privacidad y daños severos a la reputación y
+        confianza del servicio.
+    </p>
+
+    <h3>2. Objetivo</h3>
+    <p>
+        Desarrollar un análisis exhaustivo del impacto generado por la pérdida o interrupción de
+        los recursos críticos y dependencias operativas que soportan el servicio de <strong>Transferencia
+        de Archivos Cifrados</strong>, con la finalidad de establecer prioridades de recuperación de
+        infraestructura, determinar los puntos de recuperación objetivo (RPO) y consolidar las
+        estrategias mínimas de continuidad operacional indispensables para salvaguardar la
+        integridad y confidencialidad del negocio.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>3. Procedimiento — Cifrado y Resguardo de Activos</h2>
+
+    <h3>3.1 Identificación del grupo de servicios</h3>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>Proceso</strong></td><td>Cifrado y resguardo de activos</td></tr>
+                <tr><td><strong>Grupo de Productos y Servicios relacionados</strong></td><td>Transferencia de Archivos Cifrados (ID: TAC-355415)</td></tr>
+                <tr><td><strong>Responsable (Área/Función)</strong></td><td>Especialista en Ciberseguridad / Desarrollo Backend</td></tr>
+                <tr><td><strong>Nombre del responsable</strong></td><td>García García Aram Jesua</td></tr>
+                <tr><td><strong>Fecha de llenado</strong></td><td>02 de junio de 2026</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3.1.1 Identificación de los Recursos Críticos y sus Prioridades</h3>
+    <p><em>(1 indica la mayor prioridad y 3 la menor prioridad). Nota: Requisito de ISO 22301:2012: 8.2.2.d)</em></p>
+
+    <h4>Personal / Gente</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Recurso de personal / gente</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Líder de Proyecto (PM)</strong></td>
+                    <td>Responsable de la planeación, gestión de riesgos y coordinación de recursos.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Especialista en Ciberseguridad</strong></td>
+                    <td>Diseña arquitectura de cifrado (AES/TLS), gestiona llaves y normativas.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Desarrolladores Backend</strong></td>
+                    <td>Encargados de arquitectura cliente-servidor, lógica de Sockets e integración.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Ingeniero de Redes y QA</strong></td>
+                    <td>Configura firewalls y realiza pruebas de estrés de latencia e integridad.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Información y Datos</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Información</th><th>Formato</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Llaves Criptográficas (RSA, KEK, HMAC)</strong></td>
+                    <td>Electrónico (Archivos de claves aislados)</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Base de Datos de Permisos y Metadatos</strong></td>
+                    <td>Electrónico (ApplicationDBContext / ContextoDBAplicación)</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Archivos Multimedia / Logs Cifrados</strong></td>
+                    <td>Electrónico (Trozos de 80KB / Ciphertext)</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Código Fuente y Scripts Python</strong></td>
+                    <td>Electrónico (Repositorio Git local)</td>
+                    <td></td><td>X</td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Documentación y Manuales</strong></td>
+                    <td>Electrónico / Físico</td>
+                    <td></td><td></td><td>X</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3.1.2 Identificación de Punto de Recuperación Objetivo (RPO)</h3>
+    <p>
+        Para la Base de datos de permisos y logs de auditoría, el RPO establecido se basa en el
+        resguardo semanal, asumiendo una tolerancia de pérdida de información administrativa y de
+        auditoría no mayor a <strong>7 días</strong>. Sin embargo, para los secretos criptográficos maestros
+        (llaves del servidor), el RPO se establece en <strong>0 minutos</strong> ante fallas lógicas del sistema,
+        sustentado por un mecanismo atómico y síncrono que escribe en la copia de respaldo local
+        con marca de tiempo en el mismo instante de la generación del par de claves, mitigando el
+        riesgo de corrupción de archivos.
+    </p>
+    <p>No se cuenta con aplicaciones que requieran respaldo y que en un determinado momento pudieran impactar en el Servicio.</p>
+
+    <h4>Edificios y Ambiente de Trabajo</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Edificios / Ambiente de trabajo</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Oficinas</td>
+                    <td>Espacio físico e infraestructura donde se desarrolla, compila y coordina el despliegue del servicio local.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Instalaciones, Mobiliario, Equipamiento y Consumibles</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Instalaciones / Mobiliario / equipamiento / consumible</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="5"><strong>Mobiliario:</strong> Muebles de las oficinas de desarrollo.</td></tr>
+                <tr>
+                    <td>Escritorios</td>
+                    <td>Espacios físicos asignados para las estaciones de trabajo de los desarrolladores.</td>
+                    <td></td><td>X</td><td></td>
+                </tr>
+                <tr>
+                    <td>Sillas</td>
+                    <td>Sillas de trabajo operativas para el personal técnico.</td>
+                    <td></td><td>X</td><td></td>
+                </tr>
+                <tr><td colspan="5"><strong>Equipamiento:</strong> Infraestructura de hardware de cómputo.</td></tr>
+                <tr>
+                    <td>Servidor de Datos Central</td>
+                    <td>Equipo de hardware multinúcleo con soporte de aceleración criptográfica por hardware.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>Estaciones de Trabajo (PCs)</td>
+                    <td>Computadoras para el desarrollo de código en Python y pruebas locales en VMware.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>Monitores y Periféricos</td>
+                    <td>Pantallas de visualización de código, teclados y ratones operativos.</td>
+                    <td></td><td></td><td>X</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Sistemas de Información y Comunicaciones</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Sistema o componente de TIC</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Entorno de Ejecución Python 3.12+</td>
+                    <td>Intérprete y librerías criptográficas de base</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>Servidor SQL Server</td>
+                    <td>Motores de bases de datos para la persistencia del contexto de la aplicación y logs.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>Repositorio Git Local</td>
+                    <td>Sistema de control de versiones centralizado para control de cambios del código fuente.</td>
+                    <td></td><td>X</td><td></td>
+                </tr>
+                <tr>
+                    <td>Plataforma de comunicación interna</td>
+                    <td>Canal electrónico para coordinar actividades del equipo técnico (Teams / Correo).</td>
+                    <td></td><td></td><td>X</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Transportación</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Transporte</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>No aplica</td>
+                    <td>El servicio está delimitado operativamente a la red de área local (LAN) interna.</td>
+                    <td></td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Finanzas</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Recurso Financiero</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>No aplica</td>
+                    <td>No se requieren pasarelas de pago ni recursos financieros directos para la transmisión.</td>
+                    <td></td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Proveedores y Socios de Negocio</h4>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Proveedor / socio de negocio</th><th>Descripción</th><th>Prioridad 1</th><th>Prioridad 2</th><th>Prioridad 3</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Enlace de Red / Internet</td>
+                    <td>Enlace simétrico de red interna con ancho de banda mínimo de 100 Mbps para el streaming de trozos.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>Suministro Eléctrico (CFE)</td>
+                    <td>Servicio de energía eléctrica indispensable para mantener encendido el nodo central del servidor.</td>
+                    <td>X</td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar BIA Operacional</h2>
+    <a class="doc-link" href="/pdfs/BIAsOperacional-Equipo3-7CV4.pdf" target="_blank">
+        📄 Documento Completo - BIA Operacional
+    </a>
+</section>

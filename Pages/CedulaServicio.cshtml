@@ -1,0 +1,326 @@
+@page
+@{
+    ViewData["Title"] = "Cédula de Servicio - SecureTransfer";
+}
+
+<section class="panel">
+    <h2>Cédula de Servicio</h2>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>ID del Servicio</strong></td><td>TAC-355415</td></tr>
+                <tr><td><strong>Fecha de Elaboración</strong></td><td>27/04/2026</td></tr>
+                <tr><td><strong>Fecha de Entrega</strong></td><td>06 de mayo de 2026</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>1. Información General del Servicio de IT</h2>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr><td><strong>Nombre de la Empresa</strong></td><td>Servicios Tecnológicos Empresariales SA. de C.V.</td></tr>
+                <tr><td><strong>Departamento</strong></td><td>Cómputo</td></tr>
+                <tr><td><strong>Nombre del servicio</strong></td><td>Transferencia de Archivos Cifrados</td></tr>
+                <tr><td><strong>Tipo de servicio</strong></td><td>Nuevo: X &nbsp;&nbsp; Cambio: &nbsp;&nbsp; Retiro: &nbsp;&nbsp; Activo:</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Listado de Variantes o Subservicios</h3>
+    <ul class="bullet-list">
+        <li>Variante optimizada para contenido multimedia que utiliza el reproductor <strong>VideoPlayerE2EChaCha20.cshtml</strong> para descifrado en tiempo real en el cliente.</li>
+        <li>Subservicio de almacenamiento persistente donde los datos se mantienen cifrados en reposo y el proveedor no posee las llaves de acceso.</li>
+        <li>Modalidad que utiliza el procesamiento por trozos (80KB) y protocolos TLS sobre Sockets para mover activos digitales críticos sin saturar la memoria.</li>
+        <li>Subservicio que permite al emisor definir quién, cómo y por cuánto tiempo se accede a un archivo, validado mediante <strong>PermissionService</strong>.</li>
+        <li>Variante orientada a cumplimiento que entrega reportes de logs analizados con Python y validación de firmas SHA-256 para asegurar que nada fue alterado.</li>
+        <li>Basado en la compatibilidad con el protocolo SCP para transferencia básica en dispositivos antiguos que no soportan interfaces modernas.</li>
+    </ul>
+
+    <h3>Descripción y Alcance del Servicio</h3>
+    <p>
+        El proyecto comprende el diseño, desarrollo técnico e implementación de la solución de
+        transferencia cifrada exclusivamente para el nodo central del departamento de IT de la
+        institución. El servicio estará delimitado operativamente a la red local (LAN) administrativa,
+        garantizando la configuración del servidor y la gestión de llaves criptográficas para un máximo
+        de 50 estaciones de trabajo concurrentes. El compromiso de entrega finaliza con la capacitación
+        técnica de los administradores de red involucrados y la entrega de la documentación operativa,
+        excluyendo del alcance el soporte técnico a usuarios finales de otros departamentos o la
+        expansión del servicio a redes externas fuera del dominio institucional.
+    </p>
+
+    <h3>Objetivo del Servicio</h3>
+    <p>
+        Implementar un sistema robusto de transferencia de archivos cifrados mediante el desarrollo de
+        una arquitectura cliente-servidor y la integración de bibliotecas criptográficas avanzadas para
+        la gestión segura de llaves, con el fin de prevenir el robo de información sensible, mitigar
+        ataques de interceptación y asegurar el cumplimiento de las normativas de privacidad de datos
+        vigentes de la organización, garantizando la integridad y confidencialidad de la información
+        crítica del negocio, y la certeza de que el acceso a la información compartida es validado y
+        verificado gracias a un análisis de permisos brindados por un usuario emisor.
+    </p>
+
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Usuarios a quienes se brinda el servicio</strong></td>
+                    <td>Administradores de TI, Dueños de información o Emisores y Usuarios Consumidores o Receptores. Sectores social, gubernamental y administrativo de empresas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Beneficios del servicio</strong></td>
+                    <td>Protección contra infiltraciones de datos, cumplimiento normativo, validación de integridad vía HMAC y control total sobre quién accede a la información.</td>
+                </tr>
+                <tr>
+                    <td><strong>Demanda del servicio</strong></td>
+                    <td>La demanda se clasifica como <strong>Alta</strong> con un 95% de uso proyectado debido a que el servicio se establece como el único canal autorizado y obligatorio para la transferencia de archivos con datos sensibles. El porcentaje refleja que casi la totalidad del flujo de información clasificada de la empresa debe pasar por este proceso para cumplir con la arquitectura de Zero-Knowledge y las auditorías de seguridad, dejando solo un 5% para archivos de carácter público o no sensible que no requieren cifrado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>2. Responsables del Servicio (Matriz RACI)</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Actividad / ROL</th>
+                    <th>Líder de Proyecto (PM)</th>
+                    <th>Desarrolladores Backend</th>
+                    <th>Especialista en ciberseguridad</th>
+                    <th>Ingeniero de Redes y QA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Diseño de arquitectura criptográfica</td><td>R</td><td>A</td><td>C</td><td>I</td></tr>
+                <tr><td>Desarrollo del código (SFT Service)</td><td>A</td><td>R</td><td>I</td><td>C</td></tr>
+                <tr><td>Configuración de Sockets y Red</td><td>A</td><td>I</td><td>C</td><td>R</td></tr>
+                <tr><td>Gestión de Llaves y Certificados</td><td>C</td><td>A</td><td>R</td><td>I</td></tr>
+                <tr><td>Elaboración de Manuales y Guías</td><td>C</td><td>A</td><td>I</td><td>R</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><small>R = Responsable &nbsp;|&nbsp; A = Encargado &nbsp;|&nbsp; C = Consultado &nbsp;|&nbsp; I = Interesados</small></p>
+
+    <h3>Directorio de Contactos</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rol</th>
+                    <th>Nombre</th>
+                    <th>Correo electrónico</th>
+                    <th>Teléfono / extensión</th>
+                    <th>Horario de atención</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Líder de Proyecto</td>
+                    <td>Ricardo Zavala Camacho</td>
+                    <td>rcamachoz1900@alumno.ipn.mx</td>
+                    <td>556677|8888</td>
+                    <td>7:00 a 15:00</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Desarrolladores Backend</td>
+                    <td>Erick Damián Rodríguez Martínez</td>
+                    <td>erodriguezm1704@alumno.ipn.mx</td>
+                    <td>5522335577</td>
+                    <td rowspan="2">15:00 a 22:00</td>
+                </tr>
+                <tr>
+                    <td>Aram Jesua García García</td>
+                    <td>agarciag1912@alumno.ipn.mx</td>
+                    <td>5513895242</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Especialistas en ciberseguridad</td>
+                    <td>Erick Damián Rodríguez Martínez</td>
+                    <td>erodriguezm1704@alumno.ipn.mx</td>
+                    <td>5522335577</td>
+                    <td rowspan="2">15:00 a 22:00</td>
+                </tr>
+                <tr>
+                    <td>Aram Jesua García García</td>
+                    <td>agarciag1912@alumno.ipn.mx</td>
+                    <td>5513895242</td>
+                </tr>
+                <tr>
+                    <td>Ingeniero de Redes y QA</td>
+                    <td>Ricardo Zavala Camacho</td>
+                    <td>rcamachoz1900@alumno.ipn.mx</td>
+                    <td>556677|8888</td>
+                    <td>7:00 a 15:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>3. Condiciones Generales o Requisitos para Proporcionar el Servicio</h2>
+    <p>Para que el servicio de transmisión cifrada opere correctamente y cumpla con los niveles de seguridad esperados, se deben cumplir los siguientes requisitos previos:</p>
+    <ul class="bullet-list">
+        <li><strong>Infraestructura de Red:</strong> Contar con un ancho de banda simétrico mínimo de 20 Mbps para soportar el flujo de datos sin latencia excesiva durante el proceso de cifrado/descifrado.</li>
+        <li><strong>Entorno de Ejecución:</strong> El servidor y los clientes deben tener instalada la versión de Python 3.12+ y las librerías criptográficas específicas (cryptography, pycryptodome) verificadas en el repositorio.</li>
+        <li><strong>Acceso y Puertos:</strong> El firewall de la red institucional debe permitir el tráfico a través del puerto específico configurado para el servicio (por defecto el puerto 65432 o el asignado en la configuración).</li>
+        <li><strong>Seguridad de Llaves:</strong> Es obligatorio que el usuario posea la llave pública del servidor para iniciar la sesión; de lo contrario, el servicio rechazará la conexión por política de seguridad.</li>
+        <li><strong>Identificación del Usuario:</strong> El usuario final debe contar con credenciales de acceso válidas registradas en la base de datos de control del sistema de transferencia.</li>
+    </ul>
+</section>
+
+<section class="panel">
+    <h2>5. Niveles de Servicio (SLA — Acuerdos de Servicios para los Usuarios)</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de nivel de servicio</th>
+                    <th>Compromiso del nivel de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Disponibilidad</strong></td>
+                    <td>Garantizar un 80% de disponibilidad operativa durante el horario de servicio institucional (07:00 a 22:00 horas), excluyendo ventanas de mantenimiento programadas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Soporte vía remota/presencial</strong></td>
+                    <td>Atención de incidentes críticos en un tiempo máximo de 2 horas para administradores de IT, siempre que el reporte ocurra dentro de los turnos de atención del personal responsable.</td>
+                </tr>
+                <tr>
+                    <td><strong>Confidencialidad</strong></td>
+                    <td>Garantía técnica de que los datos están cifrados tanto en tránsito como en reposo; el sistema opera bajo un modelo Zero-Knowledge, por lo que el proveedor no posee acceso a las llaves privadas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Integridad de Información</strong></td>
+                    <td>Validación obligatoria de integridad vía firmas SHA-256 para asegurar que ningún archivo ha sido alterado.</td>
+                </tr>
+                <tr>
+                    <td><strong>Recuperación</strong></td>
+                    <td>En caso de falla crítica en la base de datos de permisos o logs, el tiempo de restauración total del servicio será menor a 4 horas.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>6. Niveles de Servicio (OLA — Acuerdos de Servicios respecto a Elementos de Configuración de Infraestructura)</h2>
+
+    <h3>Aplicaciones (SFT Service)</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo y compromiso del nivel de servicio</th>
+                    <th>Métricas de los niveles de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Capacidad:</strong> Soporte concurrente para un máximo de 50 estaciones de trabajo.</td>
+                    <td>Número de conexiones simultáneas activas sin degradación.</td>
+                </tr>
+                <tr>
+                    <td><strong>Disponibilidad:</strong> Estabilidad del entorno de ejecución Python 3.12+.</td>
+                    <td>Porcentaje de tiempo de actividad del proceso del servidor central.</td>
+                </tr>
+                <tr>
+                    <td><strong>Seguridad:</strong> Bloqueo automático de conexiones sin llave pública válida.</td>
+                    <td>Cantidad de intentos de acceso no autorizados rechazados.</td>
+                </tr>
+                <tr>
+                    <td><strong>Respaldos:</strong> Resguardo semanal de la base de datos de permisos y logs de auditoría.</td>
+                    <td>Tiempo de restauración total (RTO) menor a 4 horas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mantenimiento:</strong> Ventanas mensuales para parches de librerías criptográficas.</td>
+                    <td>Duración de la ventana de mantenimiento fuera de horario laboral.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mantenibilidad:</strong> Código modular documentado en el repositorio central.</td>
+                    <td>Tiempo promedio para aplicar cambios o correcciones en el código.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Infraestructura de Red</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo y compromiso del nivel de servicio</th>
+                    <th>Métricas de los niveles de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Capacidad:</strong> Ancho de banda simétrico mínimo de 20 Mbps para soportar el flujo de datos.</td>
+                    <td>Latencia de red monitoreada durante procesos de cifrado/descifrado.</td>
+                </tr>
+                <tr>
+                    <td><strong>Seguridad:</strong> Configuración de firewall institucional permitiendo tráfico por el puerto 65432.</td>
+                    <td>100% de conexiones filtradas por puerto y política de seguridad.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Bases de Datos</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo y compromiso del nivel de servicio</th>
+                    <th>Métricas de los niveles de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Respaldos:</strong> Resguardo semanal de la base de datos de permisos y logs de auditoría.</td>
+                    <td>Tiempo de restauración total (RTO) menor a 4 horas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mantenibilidad:</strong> Gestión de entidades y rutas de almacenamiento mediante SQL Server.</td>
+                    <td>Integridad de la base de datos verificada tras cada ciclo de respaldo.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Sistemas de Respaldo y Recuperación</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo y compromiso del nivel de servicio</th>
+                    <th>Métricas de los niveles de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Capacidad:</strong> Respaldo automático de llaves RSA-4096 con marca de tiempo y secreto maestro HMAC.</td>
+                    <td>Tasa de éxito en la restauración automática de copias ante fallos.</td>
+                </tr>
+                <tr>
+                    <td><strong>Disponibilidad:</strong> Política de reintentos automáticos (5 intentos/30 segundos) para fallas de conectividad.</td>
+                    <td>Tiempo de recuperación del servicio sin intervención manual.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>Descargar Cédula de Servicio</h2>
+    <a class="doc-link" href="/pdfs/CedulaServicio-Equipo3-7CV4.pdf" target="_blank">
+        📄 Documento Completo - Cédula de Servicio
+    </a>
+</section>
