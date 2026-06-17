@@ -1,38 +1,229 @@
-@page
+﻿@page
 @{
     ViewData["Title"] = "Plan de Continuidad - SecureTransfer";
 }
 
 <section class="panel">
     <h2>Plan de Continuidad del Negocio (BCP)</h2>
-    <p>Protocolos para garantizar disponibilidad, integridad y confidencialidad ante incidentes que afecten la transferencia cifrada de archivos.</p>
+    <p>IPN ESCOM &mdash; Gobierno de IT | Governance IT &mdash; Equipo 3 &mdash; 7CV4 &mdash; 15 de junio de 2026</p>
+</section>
 
-    <h3>Escenarios y Roles</h3>
-    <div class="card-grid four-col">
-        <article class="card"><h3>Responsable de Seguridad</h3><p>Activa el plan y autoriza la contención.</p></article>
-        <article class="card"><h3>Administrador</h3><p>Revoca permisos y suspende sesiones comprometidas.</p></article>
-        <article class="card"><h3>Soporte Técnico</h3><p>Restaura disponibilidad y valida integridad.</p></article>
-        <article class="card"><h3>Auditoría</h3><p>Documenta incidentes, accesos y evidencias.</p></article>
-    </div>
+<section class="panel">
+    <h2>1. Introducci&oacute;n</h2>
+    <p>
+        El presente Plan de Continuidad del Negocio (BCP) establece las estrategias operativas y
+        t&eacute;cnicas para garantizar la disponibilidad, integridad y confidencialidad de la soluci&oacute;n de
+        Transferencia de Archivos Cifrados ante cualquier evento disruptivo. Debido a la naturaleza del
+        servicio de operar bajo un esquema de Confidencialidad de Conocimiento Cero (<em>Zero-Knowledge</em>)
+        e intercambio masivo de datos cr&iacute;ticos dentro de la LAN institucional, cualquier
+        interrupci&oacute;n prolongada impactar&iacute;a directamente la gobernanza de TI de la organizaci&oacute;n.
+        Este documento se sustenta directamente en los hallazgos del an&aacute;lisis de riesgos que se
+        realiz&oacute;, as&iacute; como en el BIA Operacional.
+    </p>
+</section>
 
-    <h3>Métricas de Recuperación (RTO/RPO)</h3>
+<section class="panel">
+    <h2>2. Objetivo del Plan de Continuidad</h2>
+    <p>
+        Garantizar la resiliencia y la continuidad de las operaciones de cifrado, gesti&oacute;n de llaves y
+        entrega segura de archivos en el nodo central ante fallas tecnol&oacute;gicas, ca&iacute;das de
+        infraestructura o incidentes de seguridad, minimizando la ventana de exposici&oacute;n y asegurando
+        el cumplimiento de los niveles de servicio (SLA) comprometidos (<strong>80% de disponibilidad</strong>).
+    </p>
+</section>
+
+<section class="panel">
+    <h2>3. Alcance del Plan</h2>
+    <p>
+        Este plan delimita sus acciones exclusivamente a la infraestructura del nodo central y las
+        <strong>50 estaciones de trabajo concurrentes</strong> dentro de la red local (LAN) administrativa.
+        Aplica a los tres procesos clave del servicio:
+    </p>
+    <ol class="bullet-list">
+        <li><strong>Cifrado y resguardo de activos:</strong> Segmentaci&oacute;n de archivos en trozos de 80&nbsp;KB, cifrado sim&eacute;trico ChaCha20-Poly1305 y almacenamiento en base de datos.</li>
+        <li><strong>Gesti&oacute;n de permisos y llaves:</strong> Validaci&oacute;n de accesos mediante tokens JWT y envoltura de llaves (KMS) mediante RSA-OAEP.</li>
+        <li><strong>Descifrado y entrega en el cliente:</strong> Recuperaci&oacute;n, validaci&oacute;n de integridad HMAC-SHA256 y renderizado local de texto plano sin exposici&oacute;n en el servidor.</li>
+    </ol>
+</section>
+
+<section class="panel">
+    <h2>4. Procesos Cr&iacute;ticos Identificados</h2>
+    <p>Derivados del BIA Operacional y la Matriz de Riesgos. Priorizados seg&uacute;n criticidad f&iacute;sica y operativa:</p>
     <div class="table-wrap">
         <table>
-            <thead><tr><th>Proceso Crítico</th><th>Prioridad</th><th>RTO</th><th>RPO</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Proceso</th>
+                    <th>Activo Asociado</th>
+                    <th>Nivel de Criticidad</th>
+                    <th>Par&aacute;metros de Impacto</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr><td>Autenticación y sesión</td><td>Crítico</td><td>30 minutos</td><td>0</td></tr>
-                <tr><td>Distribución de claves</td><td>Crítico</td><td>1 hora</td><td>0</td></tr>
-                <tr><td>Verificación de integridad</td><td>Alto</td><td>1 hora</td><td>15 minutos</td></tr>
-                <tr><td>Descarga autorizada</td><td>Alto</td><td>2 horas</td><td>15 minutos</td></tr>
+                <tr>
+                    <td><strong>Cifrado y Resguardo de Activos</strong></td>
+                    <td>Servidor de Datos (ACT_HW_01) / Entorno Python 3.12+ (ACT_SW_01)</td>
+                    <td>Cr&iacute;tico (Grado III)</td>
+                    <td>Impacto Geogr&aacute;fico Alto (2), Afectaci&oacute;n Cr&iacute;tica de Campos (1).</td>
+                </tr>
+                <tr>
+                    <td><strong>Gesti&oacute;n de Permisos y Llaves</strong></td>
+                    <td>Base de Datos PostgreSQL/SQLite (ACT_SW_02) / Llaves Criptogr&aacute;ficas</td>
+                    <td>Cr&iacute;tico (Grado III)</td>
+                    <td>Interdependencia Extrema (2), Detenci&oacute;n de auditor&iacute;as.</td>
+                </tr>
+                <tr>
+                    <td><strong>Monitoreo, Sockets e Integridad</strong></td>
+                    <td>Firewall Perimetral (ACT_HW_02) / Enlace Sim&eacute;trico 20 Mbps</td>
+                    <td>Alto (Grado III / II)</td>
+                    <td>Afectaci&oacute;n temporal al flujo obligatorio de informaci&oacute;n sensible.</td>
+                </tr>
             </tbody>
         </table>
     </div>
+</section>
 
-    <h3>Estrategias de contingencia</h3>
+<section class="panel">
+    <h2>5. Escenarios de Interrupci&oacute;n</h2>
+
+    <h3>Escenario 1: Borrado accidental o corrupci&oacute;n de la llave privada maestra del Servidor</h3>
     <ul class="bullet-list">
-        <li><strong>Falla de clave:</strong> regeneración controlada y revocación de la sesión afectada.</li>
-        <li><strong>Integridad comprometida:</strong> bloqueo de descargas y revalidación del archivo.</li>
-        <li><strong>Caída del servicio:</strong> restauración desde almacenamiento seguro y bitácoras verificadas.</li>
+        <li><strong>Impacto:</strong> Imposibilidad de descifrar las llaves KEK de todos los archivos de la base de datos, provocando p&eacute;rdida irrecuperable de informaci&oacute;n.</li>
+        <li><strong>Activos involucrados:</strong> Llaves criptogr&aacute;ficas del servidor, directorio de almacenamiento seguro.</li>
     </ul>
-    <a class="doc-link" href="/pdfs/Plan_de_continuidad.pdf" target="_blank" rel="noopener">Descargar Plan de Continuidad</a>
+
+    <h3>Escenario 2: Ca&iacute;da del Servidor de Datos Central o corrupci&oacute;n del Entorno Python</h3>
+    <ul class="bullet-list">
+        <li><strong>Impacto:</strong> Interrupci&oacute;n total del servicio de Sockets, detenci&oacute;n de transferencias concurrentes y rechazo de handshakes TLS.</li>
+        <li><strong>Activos involucrados:</strong> ACT_HW_01 (Servidor de hardware), ACT_SW_01 (Entorno de ejecuci&oacute;n).</li>
+    </ul>
+
+    <h3>Escenario 3: Interrupci&oacute;n de la Base de Datos de Permisos o Ca&iacute;da de Red Local</h3>
+    <ul class="bullet-list">
+        <li><strong>Impacto:</strong> Inaccesibilidad a las listas de control de acceso granulares, impidiendo validar tokens JWT y provocando degradaci&oacute;n del servicio.</li>
+        <li><strong>Activos involucrados:</strong> ACT_SW_02 (Base de datos), Firewall ACT_HW_02.</li>
+    </ul>
+</section>
+
+<section class="panel">
+    <h2>6. Estrategias de Continuidad y Recuperaci&oacute;n</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Escenario de Interrupci&oacute;n</th>
+                    <th>Estrategia de Continuidad Implementada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Corrupci&oacute;n / P&eacute;rdida de Llaves Maestras</strong></td>
+                    <td>
+                        Activaci&oacute;n del <strong>Mecanismo de Respaldo At&oacute;mico S&iacute;ncrono</strong>. El servicio lee
+                        autom&aacute;ticamente la copia de respaldo local m&aacute;s reciente con marca de tiempo y
+                        secreto maestro HMAC del directorio protegido antes de lanzar una excepci&oacute;n
+                        irrecuperable.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Falla en Servidor de Datos o Entorno Python</strong></td>
+                    <td>
+                        Implementaci&oacute;n de <strong>Redundancia Local (Buffer en nodo central)</strong> y uso de
+                        virtualizaci&oacute;n (VMware) para desplegar una instancia espejo del entorno modular
+                        de ejecuci&oacute;n Python 3.12+.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Ca&iacute;da de Base de Datos / Bloqueo en Sockets</strong></td>
+                    <td>
+                        Activaci&oacute;n del <strong>Mecanismo Global de Excepciones (Middleware)</strong> que mapea estados
+                        degradados e invoca la pol&iacute;tica de reintentos autom&aacute;ticos (5 intentos / 30 segundos).
+                        Restauraci&oacute;n desde el resguardo semanal de logs en el almacenamiento cifrado
+                        externo en la nube (ACT_SE_01).
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>7. Tiempos de Recuperaci&oacute;n Metas (RTO / RPO)</h2>
+    <p>Fijados en estricto cumplimiento con la C&eacute;dula de Servicio, la Pr&aacute;ctica de Niveles de Servicio y el BIA:</p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Proceso / Recurso T&eacute;cnico</th>
+                    <th>RTO (Tiempo M&aacute;ximo de Recuperaci&oacute;n)</th>
+                    <th>RPO (P&eacute;rdida M&aacute;xima de Datos)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Secretos Criptogr&aacute;ficos Maestros (RSA / HMAC)</strong></td>
+                    <td>Inmediato (&lt;&nbsp;1 minuto) sin intervenci&oacute;n manual.</td>
+                    <td><strong>0 minutos</strong> (Garantizado por escritura at&oacute;mica simult&aacute;nea en la generaci&oacute;n de llaves).</td>
+                </tr>
+                <tr>
+                    <td><strong>Servicio de Sockets y Comunicaci&oacute;n (Firewall/Red)</strong></td>
+                    <td>4 horas (Restablecimiento f&iacute;sico o reconfiguraci&oacute;n de puertos).</td>
+                    <td>No aplica (Tr&aacute;nsito de datos en tiempo real).</td>
+                </tr>
+                <tr>
+                    <td><strong>Base de Datos de Permisos y Logs de Auditor&iacute;a</strong></td>
+                    <td>&lt;&nbsp;4 horas (Invocaci&oacute;n y restauraci&oacute;n total del aplicativo).</td>
+                    <td><strong>7 d&iacute;as</strong> (Sustentado en la pol&iacute;tica de respaldo semanal en la nube).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>8. Roles y Responsabilidades</h2>
+    <div class="card-grid two-col">
+        <article class="card">
+            <h3>Especialista en Ciberseguridad</h3>
+            <p><strong>Aram Garc&iacute;a</strong></p>
+            <p>Responsable t&eacute;cnico de la contenci&oacute;n en incidentes criptogr&aacute;ficos, resguardo e integridad de llaves maestras y mitigaci&oacute;n de brechas de seguridad forense (&lt;72 horas).</p>
+        </article>
+        <article class="card">
+            <h3>Desarrollador Backend</h3>
+            <p><strong>Erick Rodr&iacute;guez</strong></p>
+            <p>Responsable de la restauraci&oacute;n de la l&oacute;gica del servidor, despliegue del entorno modular Python 3.12+ y levantamiento del Middleware de excepciones globales.</p>
+        </article>
+        <article class="card">
+            <h3>Ingeniero de Redes y QA</h3>
+            <p><strong>Ricardo Camacho</strong></p>
+            <p>Encargado de restablecer el tr&aacute;fico por el puerto 65432, reconfiguraci&oacute;n de VLANs en el Firewall y ejecuci&oacute;n de pruebas de estr&eacute;s post-recuperaci&oacute;n.</p>
+        </article>
+        <article class="card">
+            <h3>L&iacute;der de Proyecto / PM</h3>
+            <p><strong>Ricardo Camacho</strong></p>
+            <p>Autoridad para activar formalmente el Plan de Continuidad, coordinar la comunicaci&oacute;n institucional y asegurar el alineamiento con COBIT 2019.</p>
+        </article>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>9. Pruebas y Actualizaci&oacute;n del Plan</h2>
+
+    <h3>Simulacros de Interrupci&oacute;n Controlados</h3>
+    <p>Se ejecutar&aacute;n de manera <strong>semestral</strong>, aprovechando las ventanas de mantenimiento mensual programadas en los OLA/SLA.</p>
+
+    <h3>Validaci&oacute;n de Respaldos</h3>
+    <p>Se realizar&aacute;n pruebas de estr&eacute;s y de inyecci&oacute;n de errores sint&aacute;cticos (llaves corruptas simuladas) para comprobar que la restauraci&oacute;n autom&aacute;tica de llaves <strong>RSA-4096</strong> funciona sin intervenci&oacute;n humana.</p>
+
+    <h3>Actualizaci&oacute;n Obligatoria</h3>
+    <p>Este plan deber&aacute; actualizarse inmediatamente si ocurre alguna de las siguientes condiciones:</p>
+    <ul class="bullet-list">
+        <li>Modificaci&oacute;n estructural en la capa l&oacute;gica de C# (.NET).</li>
+        <li>Cambio en las dependencias del archivo <code>requirements.txt</code> de Python.</li>
+        <li>La cantidad de estaciones concurrentes supera el l&iacute;mite establecido de <strong>50 nodos</strong>.</li>
+    </ul>
+
+    <a class="doc-link" href="/pdfs/PlanContinuidad-Equipo3-7CV4.pdf" target="_blank" rel="noopener">
+        &#128196; Descargar Plan de Continuidad Completo
+    </a>
 </section>
